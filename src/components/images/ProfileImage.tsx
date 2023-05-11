@@ -47,7 +47,7 @@ const ProfileImage = ({openUserMenu, closeUserMenu, users}: UserMenuBtnPorps) =>
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
-        <ConnectButtonForm text={'Connect'} />
+        <ConnectButtonForm text={'Connect Wallet'} />
       </Menu>
     </React.Fragment>
   )

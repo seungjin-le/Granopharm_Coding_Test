@@ -4,4 +4,7 @@ declare module 'lodash' {
       ethereum?: any
     }
   }
+  export type TitleText = {
+    title?: string
+  }
 }

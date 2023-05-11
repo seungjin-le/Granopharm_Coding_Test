@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
+import PageLayout from 'container/layout/PageLayout'
 
 function App() {
   const getData = async () => {
@@ -11,16 +11,10 @@ function App() {
       console.log('MetaMask 연결 실패:', error)
     }
   }
-
+  console.log(getData)
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.asdf
-        </p>
-        <button onClick={() => getData()}>클릭 </button>
-      </header>
+    <div>
+      <PageLayout />
     </div>
   )
 }

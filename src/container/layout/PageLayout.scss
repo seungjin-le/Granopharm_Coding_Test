@@ -1,8 +1,7 @@
 // PageHeader
 .pageHeader {
-  width: 1440px;
+  max-width: 1440px;
   height: 76px;
-  margin: 0 0 34px;
   padding: 18px 28px 2px 36px;
   background-color: #fff;
   // Header Title
@@ -28,5 +27,29 @@
     flex-grow: 0;
     margin: 1px 8px 2px 0;
     object-fit: contain;
+  }
+}
+// Header Profile Menu
+.ProfileMenu {
+  & ul {
+    width: 248px;
+    flex-grow: 0;
+    border-radius: 8px;
+    box-shadow: 0 0 60px 4px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+  }
+  & .connectBtn{
+    width: 204px;
+    height: 41px;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 17px 0 0;
+    padding: 11px 18px;
+    border-radius: 10px;
+    background-color: #2a2c33;
   }
 }

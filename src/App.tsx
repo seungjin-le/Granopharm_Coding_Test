@@ -2,10 +2,10 @@ import React from 'react'
 import './App.css'
 import PageLayout from 'container/layout/PageLayout'
 import 'lodash'
-import {Web3Provider} from '@ethersproject/providers'
+import {ExternalProvider, JsonRpcFetchFunc, Web3Provider} from '@ethersproject/providers'
 import {Web3ReactProvider} from '@web3-react/core'
 
-function getLibrary(provider: any): Web3Provider {
+const getLibrary = (provider: ExternalProvider | JsonRpcFetchFunc): Web3Provider => {
   return new Web3Provider(provider, 'any')
 }
 

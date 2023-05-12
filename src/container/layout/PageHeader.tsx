@@ -9,12 +9,13 @@ import styled from 'styled-components'
 const PageHeader = () => {
   const title: string = 'Renaissance Lab.'
   const [users, setUsers] = useState<null | HTMLElement>(null)
+  //const [profileMenuBtn, setProfileMenuBtn] = useState(false)
 
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenProfileMenu = (event: React.MouseEvent<HTMLElement>) => {
     setUsers(event.currentTarget)
   }
 
-  const handleCloseUserMenu = () => {
+  const handleCloseProfileMenu = () => {
     setUsers(null)
   }
 
@@ -25,8 +26,8 @@ const PageHeader = () => {
         <HeaderTitleForm title={title} />
       </Row>
       <ProfileImage
-        openUserMenu={event => handleOpenUserMenu(event as React.MouseEvent<HTMLElement>)}
-        closeUserMenu={handleCloseUserMenu}
+        openProfileMenu={event => handleOpenProfileMenu(event as React.MouseEvent<HTMLElement>)}
+        closeProfileMenu={handleCloseProfileMenu}
         users={users}
       />
     </CustomAntHeader>

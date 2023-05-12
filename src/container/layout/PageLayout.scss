@@ -1,27 +1,8 @@
-// PageHeader
-.pageHeader {
-
-  // Header Title
- & .Renaissance-Lab {
-
- }
-  // Header PageHeaderLogo
-  & .Logo-3{
-    width: 36px;
-    height: 20px;
-    flex-grow: 0;
-    margin: 1px 8px 2px 0;
-    object-fit: contain;
-  }
-  // Header ProfileImage
-  & .profileImage {
-    background-color: #d2d3d4;
-  }
-}
 // Header Profile DropDown Menu
 .profileDropDownMenu ul{
   padding: 24px 20px 22px 24px;
   flex-grow: 0;
   border-radius: 8px;
   box-shadow: 0 0 60px 4px rgba(0, 0, 0, 0.2);
+  top: 1rem;
 }

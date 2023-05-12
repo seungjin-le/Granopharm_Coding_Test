@@ -1,9 +1,10 @@
 import * as React from 'react'
-import {UserMenuBtnPorps} from 'lodash'
+import {ProfileMenuBtnProps} from 'lodash'
 import Box from '@mui/material/Box'
-import {Button, Dropdown, MenuProps} from 'antd'
+import {Button, Dropdown, MenuProps, Row} from 'antd'
 import ConnectButtonForm from 'components/buttonForm/ConnectButtonForm'
 import styled from 'styled-components'
+import HeaderProfileArrowsBtn from 'components/images/HeaderProfileArrowsBtn'
 
 const items: MenuProps['items'] = [
   {
@@ -11,8 +12,9 @@ const items: MenuProps['items'] = [
     key: 'connectBtn',
   },
 ]
-const ProfileImage = ({openUserMenu, closeUserMenu, users}: UserMenuBtnPorps) => {
-  console.log(closeUserMenu, openUserMenu, users)
+const ProfileImage = ({openProfileMenu, closeProfileMenu, users}: ProfileMenuBtnProps) => {
+  console.log(closeProfileMenu, openProfileMenu, users)
+
   return (
     <Box sx={{display: 'flex', alignItems: 'center', textAlign: 'center'}}>
       <CustomAntDropDown
@@ -22,7 +24,10 @@ const ProfileImage = ({openUserMenu, closeUserMenu, users}: UserMenuBtnPorps) =>
         placement={'bottomRight'}
         overlayClassName={'profileDropDownMenu'}
       >
-        <Button shape='circle' size={'large'} className='profileImage' />
+        <Row onClick={() => console.log(users)} className={'profileBtns'} justify={'end'} align={'middle'}>
+          <Button shape='circle' size={'large'} className='profileImage' />
+          <HeaderProfileArrowsBtn src={'cheveron'} alt={'Cheveron Image'} />
+        </Row>
       </CustomAntDropDown>
     </Box>
   )
@@ -31,7 +36,16 @@ const ProfileImage = ({openUserMenu, closeUserMenu, users}: UserMenuBtnPorps) =>
 export default ProfileImage
 
 const CustomAntDropDown = styled(Dropdown)`
-  margin-left: -3rem;
-  & ul {
+  // 프로필 이미지 사이즈
+  & .profileImage {
+    width: 40px;
+    height: 40px;
+    background-color: #d2d3d4;
+    // 프로필 이미지 마우스 이벤트
+    &:hover,
+    &:active {
+      border: #7a7a7a;
+      color: #7a7a7a;
+    }
   }
 `

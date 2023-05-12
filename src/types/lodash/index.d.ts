@@ -13,9 +13,14 @@ declare module 'lodash' {
   }
 
   // UserMenuBtn 타입 정의
-  export interface UserMenuBtnPorps {
-    openUserMenu: (event?: React.MouseEvent<HTMLElement>) => void
-    closeUserMenu: () => void
+  export interface ProfileMenuBtnProps {
+    openProfileMenu: (event?: React.MouseEvent<HTMLElement>) => void
+    closeProfileMenu: () => void
     users?: {} | null | undefined
+  }
+
+  export interface ImageProps {
+    src: string
+    alt: string
   }
 }

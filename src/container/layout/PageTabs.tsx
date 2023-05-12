@@ -2,6 +2,8 @@ import React from 'react'
 import {Tab, Tabs} from '@mui/material'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import styled from 'styled-components'
+import {Layout} from 'antd'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -43,7 +45,7 @@ const PageTabs = () => {
     setValue(newValue)
   }
   return (
-    <div>
+    <CustomAntTabs>
       <Box sx={{width: '100%'}}>
         <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
           <Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
@@ -62,8 +64,15 @@ const PageTabs = () => {
           Item Three
         </TabPanel>
       </Box>
-    </div>
+    </CustomAntTabs>
   )
 }
 
 export default PageTabs
+
+const CustomAntTabs = styled(Layout)`
+  display: flex;
+  height: 76px;
+  padding: 18px 28px 2px 36px;
+  background-color: #fff;
+`

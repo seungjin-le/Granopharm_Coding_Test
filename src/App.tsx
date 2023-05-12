@@ -13,11 +13,7 @@ function App() {
     }
   }
   console.log(getData)
-  return (
-    <div>
-      <PageLayout />
-    </div>
-  )
+  return <PageLayout />
 }
 
 export default App

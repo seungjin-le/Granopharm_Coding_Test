@@ -2,26 +2,31 @@ import PageHeader from 'container/layout/PageHeader'
 import PageContent from 'container/layout/PageContent'
 import PageFooter from 'container/layout/PageFooter'
 import './PageLayout.scss'
-import Container from '@mui/material/Container'
 import PageTabs from 'container/layout/PageTabs'
+import styled from 'styled-components'
+import {Layout, Space} from 'antd'
 
 const PageLayout = () => {
   return (
-    <>
-      <Container maxWidth={false} className='pageHeader'>
+    <CustomAntPageLayout direction='vertical' size={[0, 48]}>
+      <CustomAntLayoutBox>
         <PageHeader />
-      </Container>
-      <Container className='pageContent'>
-        <PageContent />
-      </Container>
-      <Container className='pageTabs'>
         <PageTabs />
-      </Container>
-      <Container className='pageFooter'>
+        <PageContent />
         <PageFooter />
-      </Container>
-    </>
+      </CustomAntLayoutBox>
+    </CustomAntPageLayout>
   )
 }
 
 export default PageLayout
+
+const CustomAntPageLayout = styled(Space)`
+  background-color: #fff;
+  width: 100%;
+  height: 100vh;
+`
+const CustomAntLayoutBox = styled(Layout)`
+  margin: auto;
+  max-width: 1440px;
+`

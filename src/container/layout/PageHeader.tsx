@@ -1,12 +1,10 @@
 import * as React from 'react'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
 import HeaderTitleForm from 'components/texts/HeaderTitleForm'
-import Logo from 'components/images/Logo'
+import PageHeaderLogo from 'components/images/PageHeaderLogo'
 import ProfileImage from 'components/images/ProfileImage'
 import {useState} from 'react'
+import {Row, Layout} from 'antd'
+import styled from 'styled-components'
 
 const PageHeader = () => {
   const title: string = 'Renaissance Lab.'
@@ -21,38 +19,29 @@ const PageHeader = () => {
   }
 
   return (
-    <Container maxWidth={false}>
-      <Toolbar disableGutters>
-        <Logo />
+    <CustomAntHeader>
+      <Row>
+        <PageHeaderLogo />
         <HeaderTitleForm title={title} />
-        <Typography
-          variant='h5'
-          noWrap
-          component='a'
-          href=''
-          sx={{
-            mr: 2,
-            display: {xs: 'flex', md: 'none'},
-            flexGrow: 1,
-            fontFamily: 'monospace',
-            fontWeight: 700,
-            letterSpacing: '.3rem',
-            color: 'inherit',
-            textDecoration: 'none',
-          }}
-        ></Typography>
-        <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}} />
-
-        <Box sx={{flexGrow: 0}}>
-          <ProfileImage
-            openUserMenu={event => handleOpenUserMenu(event as React.MouseEvent<HTMLElement>)}
-            closeUserMenu={handleCloseUserMenu}
-            users={users}
-          />
-        </Box>
-      </Toolbar>
-    </Container>
+      </Row>
+      <ProfileImage
+        openUserMenu={event => handleOpenUserMenu(event as React.MouseEvent<HTMLElement>)}
+        closeUserMenu={handleCloseUserMenu}
+        users={users}
+      />
+    </CustomAntHeader>
   )
 }
 
 export default PageHeader
+
+const CustomAntHeader = styled(Layout)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1440px;
+  height: 76px;
+  padding: 18px 28px 2px 36px;
+  background-color: #fff;
+`

@@ -1,10 +1,10 @@
 import * as React from 'react'
-import {ProfileMenuBtnProps} from 'lodash'
-import Box from '@mui/material/Box'
-import {Button, Dropdown, MenuProps, Row} from 'antd'
+import {ProfileArrowBtn, ProfileMenuBtnProps} from 'lodash'
+import {Button, Dropdown, MenuProps} from 'antd'
 import ConnectButtonForm from 'components/buttonForm/ConnectButtonForm'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 import HeaderProfileArrowsBtn from 'components/images/HeaderProfileArrowsBtn'
+import {useState} from 'react'
 
 const items: MenuProps['items'] = [
   {
@@ -13,29 +13,36 @@ const items: MenuProps['items'] = [
   },
 ]
 const ProfileImage = ({openProfileMenu, closeProfileMenu, users}: ProfileMenuBtnProps) => {
-  console.log(closeProfileMenu, openProfileMenu, users)
-
+  const [handleOpenMenu, setHandleOpenMenu] = useState<boolean>(false)
+  console.log(closeProfileMenu)
+  console.log(openProfileMenu, 'op')
+  console.log(users, 'users', handleOpenMenu)
+  //(open: boolean) => setHandleOpenMenu(open)
   return (
-    <Box sx={{display: 'flex', alignItems: 'center', textAlign: 'center'}}>
-      <CustomAntDropDown
-        className={'profileMenu'}
-        menu={{items}}
-        trigger={['click']}
-        placement={'bottomRight'}
-        overlayClassName={'profileDropDownMenu'}
-      >
-        <Row onClick={() => console.log(users)} className={'profileBtns'} justify={'end'} align={'middle'}>
-          <Button shape='circle' size={'large'} className='profileImage' />
-          <HeaderProfileArrowsBtn src={'cheveron'} alt={'Cheveron Image'} />
-        </Row>
-      </CustomAntDropDown>
-    </Box>
+    <Dropdown
+      className={'profileMenu'}
+      menu={{items}}
+      trigger={['click']}
+      placement={'bottomRight'}
+      overlayClassName={'profileDropDownMenu'}
+      onOpenChange={(open: boolean) => setHandleOpenMenu(open)}
+    >
+      {/* handleOpenMenu의 bool값을 styled-components에 props넘길시 React-Dom에서 컴포넌트로 인식 */}
+      <CustomAntProfileBtns onClick={e => console.log(e)} clickmenubtn={handleOpenMenu ? 'true' : ''}>
+        <Button shape='circle' size={'large'} className='profileImage' />
+        <HeaderProfileArrowsBtn src={'cheveron'} alt={'Cheveron Image'} />
+      </CustomAntProfileBtns>
+    </Dropdown>
   )
 }
 
 export default ProfileImage
 
-const CustomAntDropDown = styled(Dropdown)`
+const CustomAntProfileBtns = styled.div<ProfileArrowBtn>`
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
   // 프로필 이미지 사이즈
   & .profileImage {
     width: 40px;
@@ -48,4 +55,13 @@ const CustomAntDropDown = styled(Dropdown)`
       color: #7a7a7a;
     }
   }
+  // 프로필 화살표 버튼
+  ${props => {
+    return css`
+      & span {
+        transition: 0.3s;
+        transform: rotate(${props.clickmenubtn ? 0 : 180}deg);
+      }
+    `
+  }}
 `

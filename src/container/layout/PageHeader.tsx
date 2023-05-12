@@ -3,7 +3,7 @@ import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import TitleTextForm from 'components/texts/TitleTextForm'
+import HeaderTitleForm from 'components/texts/HeaderTitleForm'
 import Logo from 'components/images/Logo'
 import ProfileImage from 'components/images/ProfileImage'
 import {useState} from 'react'
@@ -24,7 +24,7 @@ const PageHeader = () => {
     <Container maxWidth={false}>
       <Toolbar disableGutters>
         <Logo />
-        <TitleTextForm title={title} />
+        <HeaderTitleForm title={title} />
         <Typography
           variant='h5'
           noWrap

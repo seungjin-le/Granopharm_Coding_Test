@@ -1,44 +1,73 @@
 import * as React from 'react'
-import {ProfileArrowBtn, ProfileMenuBtnProps} from 'lodash'
+import {AuthState, ProfileArrowBtn} from 'lodash'
 import {Button, Dropdown, MenuProps} from 'antd'
 import ConnectButtonForm from 'components/buttonForm/ConnectButtonForm'
 import styled, {css} from 'styled-components'
 import HeaderProfileArrowsBtn from 'components/images/HeaderProfileArrowsBtn'
 import {useState} from 'react'
+import ProfileMenuTitleForm from 'components/texts/ProfileMenuTitleForm'
+import {useAuth} from 'utils/UseAuth'
+import ProfileMenuListItem from 'components/list/ProfileMenuListItem'
+import ProfileMenuListIcon from 'components/list/ProfileMenuListIcon'
 
-const items: MenuProps['items'] = [
-  {
-    label: <ConnectButtonForm text={'Connect Wallet'} />,
-    key: 'connectBtn',
-  },
-]
-const ProfileImage = ({openProfileMenu, closeProfileMenu, users}: ProfileMenuBtnProps) => {
+const ProfileImage = () => {
   const [handleOpenMenu, setHandleOpenMenu] = useState<boolean>(false)
-  console.log(closeProfileMenu)
-  console.log(openProfileMenu, 'op')
-  console.log(users, 'users', handleOpenMenu)
-  //(open: boolean) => setHandleOpenMenu(open)
+  const {isLoggedIn, connection, disconnect, wallet, active}: AuthState = useAuth()
+  console.log(isLoggedIn, active, wallet)
+  const connectMenu: MenuProps['items'] = [
+    {
+      label: <ProfileMenuTitleForm title={'Connect'} />,
+      key: 'connectMenuTitle',
+      disabled: true,
+    },
+    {
+      label: <ConnectButtonForm text={'Connect Wallet'} />,
+      key: 'connectBtn',
+      onClick: async () => {
+        await connection()
+      },
+    },
+  ]
+  const disconnectMenu: MenuProps['items'] = [
+    {
+      label: <ProfileMenuListIcon account={wallet.account} />,
+      key: 'walletAccount',
+    },
+    {
+      label: <ProfileMenuListItem title={'Setting'} />,
+      key: 'setting',
+    },
+    {
+      label: <ProfileMenuListItem title={'Disconnect'} />,
+      key: 'disconnect',
+      onClick: async () => {
+        await disconnect()
+      },
+    },
+  ]
   return (
-    <Dropdown
-      className={'profileMenu'}
-      menu={{items}}
-      trigger={['click']}
-      placement={'bottomRight'}
-      overlayClassName={'profileDropDownMenu'}
-      onOpenChange={(open: boolean) => setHandleOpenMenu(open)}
-    >
-      {/* handleOpenMenu의 bool값을 styled-components에 props넘길시 React-Dom에서 컴포넌트로 인식 */}
-      <CustomAntProfileBtns onClick={e => console.log(e)} clickmenubtn={handleOpenMenu ? 'true' : ''}>
-        <Button shape='circle' size={'large'} className='profileImage' />
-        <HeaderProfileArrowsBtn src={'cheveron'} alt={'Cheveron Image'} />
-      </CustomAntProfileBtns>
-    </Dropdown>
+    <>
+      <Dropdown
+        className={'profileMenu'}
+        menu={isLoggedIn ? {items: disconnectMenu} : {items: connectMenu}}
+        trigger={['click']}
+        placement={'bottomRight'}
+        overlayClassName={'profileDropDownMenu'}
+        onOpenChange={(open: boolean) => setHandleOpenMenu(open)}
+      >
+        {/* handleOpenMenu의 bool값을 styled-components에 props넘길시 React-Dom에서 컴포넌트로 인식 */}
+        <CustomAntProfileBtn clickmenubtn={handleOpenMenu ? 'true' : ''}>
+          <Button type={'dashed'} shape='circle' size={'large'} className='profileImage' />
+          <HeaderProfileArrowsBtn src={'cheveron'} alt={'Cheveron Image'} />
+        </CustomAntProfileBtn>
+      </Dropdown>
+    </>
   )
 }
 
 export default ProfileImage
 
-const CustomAntProfileBtns = styled.div<ProfileArrowBtn>`
+const CustomAntProfileBtn = styled.div<ProfileArrowBtn>`
   display: flex;
   flex-direction: row;
   justify-content: end;

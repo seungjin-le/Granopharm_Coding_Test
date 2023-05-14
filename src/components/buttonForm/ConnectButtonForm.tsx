@@ -24,7 +24,6 @@ const CustomAntConnectBtn = styled(Button)`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 12px;
-  margin: 17px 0 0;
   padding: 11px 18px;
   border-radius: 10px;
   background-color: #2a2c33;

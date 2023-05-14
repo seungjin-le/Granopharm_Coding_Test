@@ -21,11 +21,14 @@ const PageLayout = () => {
 
 export default PageLayout
 
+// 브라우저 전체 영역
 const CustomAntPageLayout = styled(Space)`
   background-color: #fff;
   width: 100%;
   height: 100vh;
 `
+
+// 컴포넌트 출력 페이지
 const CustomAntLayoutBox = styled(Layout)`
   margin: auto;
   max-width: 1440px;

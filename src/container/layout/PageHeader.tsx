@@ -2,22 +2,21 @@ import * as React from 'react'
 import HeaderTitleForm from 'components/texts/HeaderTitleForm'
 import PageHeaderLogo from 'components/images/PageHeaderLogo'
 import ProfileImage from 'components/images/ProfileImage'
-import {useState} from 'react'
 import {Row, Layout} from 'antd'
 import styled from 'styled-components'
 
 const PageHeader = () => {
   const title: string = 'Renaissance Lab.'
-  const [users, setUsers] = useState<null | HTMLElement>(null)
+  //const [users, setUsers] = useState<null | HTMLElement>(null)
   //const [profileMenuBtn, setProfileMenuBtn] = useState(false)
 
-  const handleOpenProfileMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setUsers(event.currentTarget)
-  }
-
-  const handleCloseProfileMenu = () => {
-    setUsers(null)
-  }
+  // const handleOpenProfileMenu = (event: React.MouseEvent<HTMLElement>) => {
+  //   setUsers(event.currentTarget)
+  // }
+  //
+  // const handleCloseProfileMenu = () => {
+  //   setUsers(null)
+  // }
 
   return (
     <CustomAntHeader>
@@ -26,9 +25,9 @@ const PageHeader = () => {
         <HeaderTitleForm title={title} />
       </Row>
       <ProfileImage
-        openProfileMenu={event => handleOpenProfileMenu(event as React.MouseEvent<HTMLElement>)}
-        closeProfileMenu={handleCloseProfileMenu}
-        users={users}
+      //openProfileMenu={event => handleOpenProfileMenu(event as React.MouseEvent<HTMLElement>)}
+      //closeProfileMenu={handleCloseProfileMenu}
+      //users={users}
       />
     </CustomAntHeader>
   )

@@ -16,12 +16,12 @@ export default ProfileMenuTitleForm
 const CustomAntProfileMenuTitle = styled(Typography)`
   display: flex;
   flex-direction: row;
-  width: 64px;
+  margin-bottom: 17px;
   height: 16px;
   align-items: center;
   & span {
     flex-grow: 0;
-    font-family: Gilroy;
+    //font-family: Gilroy;
     font-size: 16px;
     font-weight: bold;
     font-stretch: normal;

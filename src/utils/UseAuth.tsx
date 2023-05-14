@@ -14,7 +14,6 @@ export function useAuth() {
 
   useEffect(() => {
     const storedAccount = localStorage.getItem('account')
-    console.log(storedAccount)
     if (storedAccount && !active) {
       activate(connector).then(async () => {
         const parsedAccount = JSON.parse(storedAccount)
@@ -27,7 +26,7 @@ export function useAuth() {
           ethBalance: balanceInEther,
           invoker: parsedAccount.invoker,
         })
-        setIsLoggedIn(true) // 로그인 상태를 true로 설정
+        setIsLoggedIn(true)
       })
     }
   }, [activate, connector, active])
@@ -64,8 +63,11 @@ export function useAuth() {
 
   const disconnect = async () => {
     try {
+      setIsConnecting(true)
       localStorage.removeItem('account')
-      setIsLoggedIn(false)
+      setIsConnecting(false)
+
+      window.location.reload()
     } catch (error) {
       console.error('Failed to open MetaMask disconnect window')
     }

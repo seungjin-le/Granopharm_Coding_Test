@@ -1,10 +1,13 @@
 import HeaderProfileArrowsBtn from 'components/images/HeaderProfileArrowsBtn'
+import {SubText} from 'lodash'
 
-interface PriceSectionProps {
-  text: string
-}
+/**
+ * 가격 섹션 컴포넌트
+ * @param {string} text - 가격 텍스트
+ * @returns {JSX.Element} - 가격 섹션 컴포넌트
+ */
 
-const PriceSection = ({text}: PriceSectionProps) => (
+const PriceSection = ({text}: SubText) => (
   <div className={'price'}>
     <div className={'priceTitle'}>{text}</div>
     <div>

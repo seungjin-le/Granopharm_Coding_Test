@@ -1,6 +1,14 @@
 import styled from 'styled-components'
 import {ImageCardProps} from 'lodash'
 
+/**
+ * 카드 형식의 이미지 컴포넌트
+ *
+ * @param {string} imgSrc - 이미지 소스
+ * @param {string} altText - 대체 텍스트
+ * @param {boolean} lastImage - 마지막 이미지 여부
+ * @returns {JSX.Element} 카드 컴포넌트
+ */
 const CardForm = ({imgSrc, altText, lastImage}: ImageCardProps) => {
   return (
     <Card>

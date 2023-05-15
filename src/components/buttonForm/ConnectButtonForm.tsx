@@ -1,11 +1,14 @@
 import {Button} from 'antd'
 import styled from 'styled-components'
+import {SubText} from 'lodash'
 
-type ConnectBtn = {
-  text?: string
-}
+/**
+ * 연결(로그인) 버튼 컴포넌트
+ * @param {string} text - 버튼 텍스트
+ * @returns {JSX.Element} - 연결 버튼 컴포넌트
+ */
 
-const ConnectButtonForm = ({text}: ConnectBtn) => {
+const ConnectButtonForm = ({text}: SubText) => {
   return (
     <CustomAntConnectBtn className={'connectBtn'}>
       <span>{text}</span>

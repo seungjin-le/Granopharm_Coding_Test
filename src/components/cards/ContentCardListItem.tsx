@@ -10,9 +10,14 @@ interface ContentCardListItemProps {
   asset: Asset
 }
 
+/**
+ * 콘텐츠 카드 리스트 아이템 컴포넌트
+ * @param {Asset} asset - 아티스트 정보
+ * @returns {JSX.Element} - 콘텐츠 카드 리스트 아이템 컴포넌트
+ */
+
 const ContentCardListItem = ({asset}: ContentCardListItemProps) => {
   const [state, setState] = useState<Asset | null>(asset)
-
   useEffect(() => {
     setState(asset)
   }, [])

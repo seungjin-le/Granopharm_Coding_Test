@@ -40,7 +40,7 @@ export default class ApiConfig {
       const headers = {
         accept: 'application/json',
         'Content-Type': 'application/json',
-        'X-Access-Token': window.sessionStorage.getItem('jwt'),
+        'X-API-KEY': process.env.REACT_APP_OPENSEA_API_KEY,
       }
 
       switch (method) {

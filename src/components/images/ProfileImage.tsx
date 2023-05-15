@@ -9,12 +9,11 @@ import ProfileMenuTitleForm from 'components/texts/ProfileMenuTitleForm'
 import {useAuth} from 'utils/UseAuth'
 import ProfileMenuListItem from 'components/list/profileMenu/ProfileMenuListItem'
 import ProfileMenuListIcon from 'components/list/profileMenu/ProfileMenuListIcon'
-import HeaderProfileLoginImage from 'components/images/HeaderProfileLoginImage'
+import HeaderProfileImage from 'components/images/HeaderProfileImage'
 
 const ProfileImage = () => {
   const [handleOpenMenu, setHandleOpenMenu] = useState<boolean>(false)
-  const {isLoggedIn, connection, disconnect, wallet, active, isConnecting}: AuthState = useAuth()
-  console.log(active, isConnecting)
+  const {isLoggedIn, connection, disconnect, wallet, isConnecting}: AuthState = useAuth()
   const connectMenu: MenuProps['items'] = [
     {
       label: <ProfileMenuTitleForm title={'Connect'} />,
@@ -68,7 +67,7 @@ const ProfileImage = () => {
           <Spin />
         ) : (
           <CustomAntProfileBtn clickmenubtn={handleOpenMenu ? 'true' : ''}>
-            <HeaderProfileLoginImage isLoggedIn={isLoggedIn} />
+            <HeaderProfileImage isLoggedIn={isLoggedIn} account={wallet?.account} />
             <HeaderProfileArrowsBtn src={'cheveron'} alt={'Cheveron Image'} size={24} />
           </CustomAntProfileBtn>
         )}

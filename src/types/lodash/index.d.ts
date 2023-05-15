@@ -33,8 +33,9 @@ declare module 'lodash' {
     clickmenubtn: string
   }
 
-  export interface LoginResult {
+  export interface ProfileMenuBtn {
     account: string
+    isLoggedIn: boolean
   }
 
   export type WalletState = {

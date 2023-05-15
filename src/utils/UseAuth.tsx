@@ -4,6 +4,10 @@ import {AbstractConnector} from '@web3-react/abstract-connector'
 import Web3 from 'web3'
 import {WalletState} from 'lodash'
 
+/**
+ * 웹3 연결 및 로그인 관련 기능을 제공하는 커스텀 훅입니다.
+ * @returns {object} 웹3 연결 및 로그인 관련 함수와 상태를 담은 객체
+ */
 export function useAuth() {
   const {active, activate, connector}: any = useWeb3React<AbstractConnector>()
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
@@ -12,6 +16,10 @@ export function useAuth() {
   const web3 = new Web3(ethereum)
   const [wallet, setWallet] = useState<WalletState>({id: '', account: '', weiBalance: '', ethBalance: '', invoker: ''})
 
+  /**
+   * 로컬 스토리지에 저장된 계정 정보를 확인하여 자동으로 로그인을 수행합니다.
+   * @param {string} storedAccount - 로컬 스토리지에 저장된 계정 정보
+   */
   useEffect(() => {
     const storedAccount = localStorage.getItem('account')
     if (storedAccount && !active) {
@@ -31,6 +39,9 @@ export function useAuth() {
     }
   }, [activate, connector, active])
 
+  /**
+   * 월렛에 연결하는 함수입니다.
+   */
   const connection = async () => {
     setIsConnecting(true)
     try {
@@ -61,6 +72,7 @@ export function useAuth() {
     }
   }
 
+  // 월렛 연결을 해제하는 함수입니다.
   const disconnect = async () => {
     try {
       setIsConnecting(true)
@@ -74,11 +86,11 @@ export function useAuth() {
   }
 
   return {
-    isLoggedIn,
-    connection,
-    disconnect,
-    wallet,
-    active,
-    isConnecting,
+    isLoggedIn, // 로그인 상태 여부
+    connection, // 월렛 연결 함수
+    disconnect, // 월렛 연결 해제 함수
+    wallet, // 월렛 정보
+    active, // 웹3 연결 상태
+    isConnecting, // 연결 중 여부
   }
 }

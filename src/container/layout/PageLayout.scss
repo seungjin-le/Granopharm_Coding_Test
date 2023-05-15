@@ -8,9 +8,12 @@
   top: 1rem;
 
   & li {
-    margin: 17px 0 !important;
+    margin: 0 !important;
     cursor: default !important;
     padding:0 !important;
+  }
+  & .ant-dropdown-menu-item-divider {
+    margin: 0 !important;
   }
   & li:first-child {
     margin-top: 0 !important;

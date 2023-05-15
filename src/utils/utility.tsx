@@ -12,3 +12,9 @@ export function maskString(str: string, front: number, middle: number, back: num
   }
   return `${str.substr(0, front)}${'.'.repeat(middle)}${str.substr(-back)}`
 }
+
+export const isEmpty = function (value: any) {
+  return (
+    value === '' || value === null || value === undefined || (typeof value === 'object' && !Object.keys(value).length)
+  )
+}

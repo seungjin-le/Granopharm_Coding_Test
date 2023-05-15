@@ -1,19 +1,20 @@
 import * as React from 'react'
 import {AuthState, ProfileArrowBtn} from 'lodash'
-import {Button, Dropdown, MenuProps} from 'antd'
+import {Dropdown, MenuProps, Spin} from 'antd'
 import ConnectButtonForm from 'components/buttonForm/ConnectButtonForm'
 import styled, {css} from 'styled-components'
 import HeaderProfileArrowsBtn from 'components/images/HeaderProfileArrowsBtn'
 import {useState} from 'react'
 import ProfileMenuTitleForm from 'components/texts/ProfileMenuTitleForm'
 import {useAuth} from 'utils/UseAuth'
-import ProfileMenuListItem from 'components/list/ProfileMenuListItem'
-import ProfileMenuListIcon from 'components/list/ProfileMenuListIcon'
+import ProfileMenuListItem from 'components/list/profileMenu/ProfileMenuListItem'
+import ProfileMenuListIcon from 'components/list/profileMenu/ProfileMenuListIcon'
+import HeaderProfileLoginImage from 'components/images/HeaderProfileLoginImage'
 
 const ProfileImage = () => {
   const [handleOpenMenu, setHandleOpenMenu] = useState<boolean>(false)
-  const {isLoggedIn, connection, disconnect, wallet, active}: AuthState = useAuth()
-  console.log(isLoggedIn, active, wallet)
+  const {isLoggedIn, connection, disconnect, wallet, active, isConnecting}: AuthState = useAuth()
+  console.log(active, isConnecting)
   const connectMenu: MenuProps['items'] = [
     {
       label: <ProfileMenuTitleForm title={'Connect'} />,
@@ -34,8 +35,14 @@ const ProfileImage = () => {
       key: 'walletAccount',
     },
     {
+      type: 'divider',
+    },
+    {
       label: <ProfileMenuListItem title={'Setting'} />,
       key: 'setting',
+    },
+    {
+      type: 'divider',
     },
     {
       label: <ProfileMenuListItem title={'Disconnect'} />,
@@ -45,6 +52,7 @@ const ProfileImage = () => {
       },
     },
   ]
+
   return (
     <>
       <Dropdown
@@ -56,10 +64,14 @@ const ProfileImage = () => {
         onOpenChange={(open: boolean) => setHandleOpenMenu(open)}
       >
         {/* handleOpenMenu의 bool값을 styled-components에 props넘길시 React-Dom에서 컴포넌트로 인식 */}
-        <CustomAntProfileBtn clickmenubtn={handleOpenMenu ? 'true' : ''}>
-          <Button type={'dashed'} shape='circle' size={'large'} className='profileImage' />
-          <HeaderProfileArrowsBtn src={'cheveron'} alt={'Cheveron Image'} />
-        </CustomAntProfileBtn>
+        {isConnecting ? (
+          <Spin />
+        ) : (
+          <CustomAntProfileBtn clickmenubtn={handleOpenMenu ? 'true' : ''}>
+            <HeaderProfileLoginImage isLoggedIn={isLoggedIn} />
+            <HeaderProfileArrowsBtn src={'cheveron'} alt={'Cheveron Image'} size={24} />
+          </CustomAntProfileBtn>
+        )}
       </Dropdown>
     </>
   )
@@ -87,8 +99,8 @@ const CustomAntProfileBtn = styled.div<ProfileArrowBtn>`
   // 프로필 화살표 버튼
   ${props => {
     return css`
-      & span {
-        transition: 0.3s;
+      & .arrowBtn {
+        transition: 0.2s;
         transform: rotate(${props.clickmenubtn ? 0 : 180}deg);
       }
     `

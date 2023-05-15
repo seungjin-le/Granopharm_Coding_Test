@@ -25,6 +25,7 @@ declare module 'lodash' {
   export interface ImageProps {
     src: string
     alt: string
+    size: number
   }
   // 프로필 화살표 버튼 styled-components Props Type
   export interface ProfileArrowBtn {
@@ -34,24 +35,6 @@ declare module 'lodash' {
 
   export interface LoginResult {
     account: string
-  }
-
-  export interface WalletStates {
-    accounts: any[]
-    balance: string
-    chainId: string
-  }
-
-  export interface MetaMaskContextData {
-    wallet: WalletStates
-    hasProvider: boolean | null
-    error: boolean
-    errorMessage: string
-    isConnecting: boolean
-    connectMetaMask: () => void
-    disconnectMetaMask: () => void
-    clearError: () => void
-    account: string[]
   }
 
   export type WalletState = {
@@ -68,5 +51,32 @@ declare module 'lodash' {
     wallet: WalletState
     active: boolean
     isConnecting: boolean
+  }
+
+  export interface Asset {
+    asset_contract: {
+      name: string
+      image_url: string
+    }
+    assetMainImage: string
+    assetImages: string[]
+    permalink: string
+    assetName: string
+    assets: {
+      image_thumbnail_url: string
+    }[]
+  }
+
+  export interface ImageCardProps {
+    imgSrc: string
+    altText: string
+    lastImage?: boolean
+  }
+
+  export interface ChangeTab {
+    handleOnChangeTap: (tabKey: string) => void
+  }
+  export interface InfiniteScroll {
+    infiniteScroll: () => void
   }
 }

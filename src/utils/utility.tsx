@@ -13,8 +13,16 @@ export function maskString(str: string, front: number, middle: number, back: num
   return `${str.substr(0, front)}${'.'.repeat(middle)}${str.substr(-back)}`
 }
 
+/**
+ * 주어진 값이 비어있는지 확인.
+ * @param value - 확인할 값
+ * @returns {boolean} - 값이 비어있으면 true, 그렇지 않으면 false를 반환.
+ */
 export const isEmpty = function (value: any) {
   return (
-    value === '' || value === null || value === undefined || (typeof value === 'object' && !Object.keys(value).length)
+    value === '' || // 빈 문자열인지 확인
+    value === null || // null인지 확인
+    value === undefined || // undefined인지 확인
+    (typeof value === 'object' && !Object.keys(value).length) // 객체이면서 속성이 없는지 확인
   )
 }

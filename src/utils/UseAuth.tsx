@@ -39,9 +39,7 @@ export function useAuth() {
     }
   }, [activate, connector, active])
 
-  /**
-   * 월렛에 연결하는 함수입니다.
-   */
+  // 월렛에 연결하는 함수입니다.
   const connection = async () => {
     setIsConnecting(true)
     try {

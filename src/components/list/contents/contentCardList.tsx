@@ -1,14 +1,16 @@
 import styled from 'styled-components'
 import {Avatar, Card, Layout} from 'antd'
 import ContentCardListItem from 'components/cards/ContentCardListItem'
-import {Asset} from 'lodash'
+import {Assets} from 'lodash'
 import Meta from 'antd/es/card/Meta'
 
-interface Props {
-  assets: Asset[]
-}
+/**
+ * 콘텐츠 카드 리스트 컴포넌트
+ * @param {Asset[]} assets - 에셋 배열
+ * @returns {JSX.Element} - 콘텐츠 카드 리스트 컴포넌트
+ */
 
-const ContentCardList = ({assets}: Props) => {
+const ContentCardList = ({assets}: Assets) => {
   return (
     <CustomAntCardList>
       {assets.length ? (

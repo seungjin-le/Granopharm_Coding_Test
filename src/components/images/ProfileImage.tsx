@@ -11,6 +11,11 @@ import ProfileMenuListItem from 'components/list/profileMenu/ProfileMenuListItem
 import ProfileMenuListIcon from 'components/list/profileMenu/ProfileMenuListIcon'
 import HeaderProfileImage from 'components/images/HeaderProfileImage'
 
+/**
+ * 프로필 이미지와 트롭다운 메뉴 컴포넌트
+ *
+ * @returns {JSX.Element} 프로필 이미지와 드롭다운 컴포넌트
+ */
 const ProfileImage = () => {
   const [handleOpenMenu, setHandleOpenMenu] = useState<boolean>(false)
   const {isLoggedIn, connection, disconnect, wallet, isConnecting}: AuthState = useAuth()
@@ -64,9 +69,10 @@ const ProfileImage = () => {
       >
         {/* handleOpenMenu의 bool값을 styled-components에 props넘길시 React-Dom에서 컴포넌트로 인식 */}
         {isConnecting ? (
+          // 로그인 시도중 로딩
           <Spin />
         ) : (
-          <CustomAntProfileBtn clickmenubtn={handleOpenMenu ? 'true' : ''}>
+          <CustomAntProfileBtn clickMenuBtn={handleOpenMenu ? 'true' : ''}>
             <HeaderProfileImage isLoggedIn={isLoggedIn} account={wallet?.account} />
             <HeaderProfileArrowsBtn src={'cheveron'} alt={'Cheveron Image'} size={24} />
           </CustomAntProfileBtn>
@@ -83,11 +89,13 @@ const CustomAntProfileBtn = styled.div<ProfileArrowBtn>`
   flex-direction: row;
   justify-content: end;
   align-items: center;
+
   // 프로필 이미지 사이즈
   & .profileImage {
     width: 40px;
     height: 40px;
     background-color: #d2d3d4;
+
     // 프로필 이미지 마우스 이벤트
     &:hover,
     &:active {
@@ -95,12 +103,13 @@ const CustomAntProfileBtn = styled.div<ProfileArrowBtn>`
       color: #7a7a7a;
     }
   }
+
   // 프로필 화살표 버튼
   ${props => {
     return css`
       & .arrowBtn {
         transition: 0.2s;
-        transform: rotate(${props.clickmenubtn ? 0 : 180}deg);
+        transform: rotate(${props.clickMenuBtn ? 0 : 180}deg);
       }
     `
   }}

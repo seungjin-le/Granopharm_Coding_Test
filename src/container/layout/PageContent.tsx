@@ -2,8 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import {Layout} from 'antd'
 import ContentCardList from 'components/list/contents/contentCardList'
+import {Assets} from 'lodash'
 
-const PageContent = ({assets}: any) => {
+/**
+ * 페이지 컨텐츠 컴포넌트
+ * @param {Assets} assets - 에셋 배열
+ * @returns {JSX.Element} - 페이지 컨텐츠 컴포넌트
+ */
+
+const PageContent = ({assets}: Assets) => {
   return (
     <CustomAntContent>
       <ContentCardList assets={assets} />

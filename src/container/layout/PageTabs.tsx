@@ -2,12 +2,19 @@ import React, {memo} from 'react'
 import {Layout, Tabs} from 'antd'
 import styled from 'styled-components'
 import {options} from 'utils/PageTabOptions'
-
 import {ChangeTab} from 'lodash'
 
+/**
+ * 페이지 탭 컴포넌트
+ *
+ * @param {Function} handleOnChangeTap - 탭 변경 핸들러 함수
+ *
+ * 지갑 주소를 통해 프로필 이미지 출력
+ */
 const PageTabs = ({handleOnChangeTap}: ChangeTab) => {
   return (
     <CustomAntTabs>
+      {/* Ant Design Tabs 컴포넌트 */}
       <Tabs onTabClick={tabKey => handleOnChangeTap(tabKey)} items={options}></Tabs>
     </CustomAntTabs>
   )
@@ -15,6 +22,7 @@ const PageTabs = ({handleOnChangeTap}: ChangeTab) => {
 
 export default memo(PageTabs)
 
+// 스타일드 컴포넌트
 const CustomAntTabs = styled(Layout)`
   display: flex;
   height: 76px;

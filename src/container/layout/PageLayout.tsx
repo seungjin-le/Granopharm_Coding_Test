@@ -5,18 +5,24 @@ import './PageLayout.scss'
 import PageTabs from 'container/layout/PageTabs'
 import styled from 'styled-components'
 import {Layout, Space} from 'antd'
-import {ReactNode, useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import ApiConfig, {HttpMethod} from 'dataManager/apiConfig'
 import {EndPoint} from 'dataManager/apiMapper'
-import {Asset} from 'lodash'
+import {Asset, PageLayoutProps} from 'lodash'
 
-const PageLayout = ({children}: {children: ReactNode}) => {
+/**
+ * 페이지 레이아웃 컴포넌트
+ * @param {ReactNode} children - 자식 컴포넌트
+ * @returns {JSX.Element} - 페이지 레이아웃 컴포넌트
+ */
+
+const PageLayout = ({children}: PageLayoutProps) => {
   const [items, setItems] = useState([])
   console.log(children)
 
   const getDate = async (tabKey?: string) => {
     console.log(`${tabKey} Date Load`)
-    setItems([])
+    setItems([]) // 아이템 초기화
     try {
       const {
         data: {bundles},
@@ -54,7 +60,7 @@ const PageLayout = ({children}: {children: ReactNode}) => {
   }
 
   useEffect(() => {
-    getDate()
+    getDate() // 컴포넌트 마운트시 데이터 로드
   }, [])
 
   return (

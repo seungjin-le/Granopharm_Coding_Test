@@ -28,7 +28,7 @@ const ContentCardListItem = ({asset}: ContentCardListItemProps) => {
         <Row style={{height: '64%', minHeight: '64%', maxHeight: '64%'}}>
           <Col span={12} flex={1} style={{height: '100%'}}>
             <CardBox>
-              <CardForm imgSrc={state?.assetMainImage || state?.assetImages[0] || ''} altText={'qwe'} />
+              <CardForm imgSrc={state?.assetMainImage || state?.assetImages[0] || ''} altText={'alt'} />
             </CardBox>
           </Col>
           <Col span={12} flex={1} style={{height: '100%'}}>
@@ -38,12 +38,12 @@ const ContentCardListItem = ({asset}: ContentCardListItemProps) => {
                   return (
                     <SmallCard
                       imgSrc={imgUrl}
-                      altText={'ad'}
+                      altText={'alt'}
                       key={index}
                       lastImage={index === 3 || imgUrls.length - 1 === index}
                     />
                   )
-                return
+                return null
               })}
             </CardBox>
           </Col>
@@ -63,6 +63,7 @@ const ContentCardListItem = ({asset}: ContentCardListItemProps) => {
 }
 
 export default ContentCardListItem
+
 const CardBox = styled.div`
   width: 100%;
   height: 100%;
@@ -77,19 +78,34 @@ const CardBox = styled.div`
 
 // Specific Styled Components
 const CustomAntCard = styled(CardBox)`
-  width: 24rem;
-  min-width: 23rem;
-  height: 330px;
-  flex-grow: 0;
+  min-width: 20rem;
+  height: 20.7rem;
   border: solid 1px #d2d3d4;
   background-color: #fff;
+  @media (max-width: 1422px) {
+    max-width: 25rem;
+
+    min-height: 19rem;
+    max-height: 23rem;
+    height: calc(100vw / 5);
+  }
+  @media (max-width: 962px) {
+    min-height: 18rem;
+    height: calc(100vw / 3);
+  }
+  @media (max-width: 898px) {
+    height: calc(100vw / 2);
+    max-width: 28rem;
+    min-width: 23rem;
+  }
 `
 
 const CardTextBox = styled.div`
   width: 100%;
   padding: 8px;
   margin-top: 10px;
-  & .cardTitle {
+
+  .cardTitle {
     font-size: 18px;
     font-weight: bold;
     text-align: left;
@@ -147,4 +163,5 @@ const CardPriceBox = styled.div`
       margin: 0;
     }
   }
+}
 `

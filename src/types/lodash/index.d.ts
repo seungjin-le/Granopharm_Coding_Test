@@ -44,7 +44,8 @@ declare module 'lodash' {
   export interface ImageProps {
     src: string
     alt: string
-    size?: number
+    size: number
+    className: string
   }
 
   // 프로필 화살표 버튼 styled-components Props Type

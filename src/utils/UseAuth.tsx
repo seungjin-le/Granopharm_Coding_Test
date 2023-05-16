@@ -5,7 +5,7 @@ import Web3 from 'web3'
 import {WalletState} from 'lodash'
 
 /**
- * 웹3 연결 및 로그인 관련 기능을 제공하는 커스텀 훅입니다.
+ * 웹3 연결 및 로그인 관련 기능을 제공하는 커스텀 훅.
  * @returns {object} 웹3 연결 및 로그인 관련 함수와 상태를 담은 객체
  */
 export function useAuth() {
@@ -15,9 +15,11 @@ export function useAuth() {
   const {ethereum} = window
   const web3 = new Web3(ethereum)
   const [wallet, setWallet] = useState<WalletState>({id: '', account: '', weiBalance: '', ethBalance: '', invoker: ''})
+  // 현재 사용 중인 브라우저확인.
+  const userAgent = navigator.userAgent.toLowerCase()
 
   /**
-   * 로컬 스토리지에 저장된 계정 정보를 확인하여 자동으로 로그인을 수행합니다.
+   * 로컬 스토리지에 저장된 계정 정보를 확인하여 자동으로 로그인을 수행.
    * @param {string} storedAccount - 로컬 스토리지에 저장된 계정 정보
    */
   useEffect(() => {
@@ -41,6 +43,17 @@ export function useAuth() {
 
   // 월렛에 연결하는 함수입니다.
   const connection = async () => {
+    let browsers: string[] = ['chrome', 'firefox', 'safari', 'edge', 'opera', 'brave', 'vivaldi']
+
+    if (!browsers.map((browser: string) => userAgent.includes(browser))) {
+      if (!ethereum) return alert('메타마스크 플러그인을 설치해 주시기 바랍니다.')
+    }
+    //
+    if (!ethereum)
+      return alert(
+        '메타 마스크 플러그인을 지원하는 브라우저에서 로그인해 주시기 바랍니다. ex) Google Chrome, Mozilla Firefox, Microsoft Edge, Brave Browser, Opera',
+      )
+
     setIsConnecting(true)
     try {
       const accounts = await ethereum.request({

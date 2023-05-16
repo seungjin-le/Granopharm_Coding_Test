@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './styles/reset.css'
 import App from 'App'
 import reportWebVitals from './reportWebVitals'
 import 'antd/dist/antd.min.js.map'
 import {ExternalProvider, JsonRpcFetchFunc, Web3Provider} from '@ethersproject/providers'
 import {Web3ReactProvider} from '@web3-react/core'
+import GlobalStyleStyled from 'styles/GlobalStyleStyled'
 
 const getLibrary = (provider: ExternalProvider | JsonRpcFetchFunc): Web3Provider => {
   return new Web3Provider(provider, 'any')
@@ -14,6 +14,7 @@ const getLibrary = (provider: ExternalProvider | JsonRpcFetchFunc): Web3Provider
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
+    <GlobalStyleStyled />
     <Web3ReactProvider getLibrary={getLibrary}>
       <App />
     </Web3ReactProvider>

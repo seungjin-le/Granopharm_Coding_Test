@@ -44,10 +44,4 @@ const CustomAntCardList = styled(Layout)`
   @media (max-width: 1422px) {
     justify-items: center;
   }
-  @media (max-width: 962px) {
-    justify-items: center;
-  }
-  @media (max-width: 898px) {
-    justify-items: center;
-  }
 `

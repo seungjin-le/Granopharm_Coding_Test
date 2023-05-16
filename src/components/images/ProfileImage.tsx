@@ -2,7 +2,7 @@ import * as React from 'react'
 import {AuthState, ProfileArrowBtn} from 'lodash'
 import {Dropdown, MenuProps, Spin} from 'antd'
 import ConnectButtonForm from 'components/buttons/ConnectButtonForm'
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 import HeaderImageBtn from 'components/buttons/HeaderImageBtn'
 import {useState} from 'react'
 import ProfileMenuTitleForm from 'components/texts/ProfileMenuTitleForm'
@@ -52,6 +52,7 @@ const ProfileImage = () => {
       label: <ProfileMenuListItem text={'Disconnect'} />,
       key: 'disconnect',
       onClick: async () => {
+        setHandleOpenMenu(false)
         await disconnect()
       },
     },
@@ -59,7 +60,7 @@ const ProfileImage = () => {
 
   return (
     <>
-      <Dropdown
+      <CustomAntDropDown
         menu={isLoggedIn ? {items: disconnectMenu} : {items: connectMenu}}
         trigger={['click']}
         placement={'bottomRight'}
@@ -73,15 +74,24 @@ const ProfileImage = () => {
         ) : (
           <CustomAntProfileBtn clickMenuBtn={handleOpenMenu ? 'true' : ''}>
             <HeaderProfileImage isLoggedIn={isLoggedIn} account={wallet?.account} />
-            <HeaderImageBtn src={'cheveron'} alt={'Cheveron Image'} size={24} />
+            <HeaderImageBtn src={'cheveron'} alt={'Cheveron Image'} size={24} className={'arrowBtn'} />
           </CustomAntProfileBtn>
         )}
-      </Dropdown>
+      </CustomAntDropDown>
     </>
   )
 }
 
 export default ProfileImage
+
+const CustomAntDropDown = styled(Dropdown)`
+  //.ant-dropdown-trigger
+  & .ant-dropdown-open .arrowBtn {
+    background: red !important;
+    margin-top: 400px;
+    color: red;
+  }
+`
 
 const CustomAntProfileBtn = styled.div<ProfileArrowBtn>`
   display: flex;
@@ -102,14 +112,4 @@ const CustomAntProfileBtn = styled.div<ProfileArrowBtn>`
       color: #7a7a7a;
     }
   }
-
-  // 프로필 화살표 버튼
-  ${props => {
-    return css`
-      & .arrowBtn {
-        transition: 0.2s;
-        transform: rotate(${props.clickMenuBtn ? 0 : 180}deg);
-      }
-    `
-  }}
 `

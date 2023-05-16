@@ -23,3 +23,13 @@
   }
 
 }
+
+// 페이지 헤더 프로필 화살표 버튼
+.ant-dropdown-trigger {
+  & .arrowBtn {
+    transition: 0.2s;
+  }
+  &.ant-dropdown-open .arrowBtn{
+    transform: rotate(180deg);
+  }
+}

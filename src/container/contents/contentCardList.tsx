@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import {Avatar, Card, Layout} from 'antd'
 import ContentCardListItem from 'components/cards/ContentCardListItem'
 import {Asset, Assets} from 'lodash'
-import Meta from 'antd/es/card/Meta'
+import {Meta} from 'antd/lib/list/Item'
 
 /**
  * 콘텐츠 카드 리스트 컴포넌트

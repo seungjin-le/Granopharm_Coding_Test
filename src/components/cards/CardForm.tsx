@@ -55,8 +55,7 @@ const Badge = styled.div`
   padding: 7px 6px;
   border-radius: 10px;
   background-color: #f7f7f7;
-
-  //font-family: Urbanist;
+  font-family: Urbanist;
   font-size: 13px;
   font-weight: bold;
   font-stretch: normal;

@@ -21,7 +21,7 @@ const CustomAntProfileMenuTitle = styled(Typography)`
   align-items: center;
   & span {
     flex-grow: 0;
-    //font-family: Gilroy;
+    font-family: Gilroy;
     font-size: 16px;
     font-weight: bold;
     font-stretch: normal;

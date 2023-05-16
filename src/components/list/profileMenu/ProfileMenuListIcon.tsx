@@ -31,7 +31,7 @@ const CustomAntListIcon = styled(Card)`
     text-align: center;
     box-shadow: none;
     & .account {
-      //font-family: AirbnbCereal_W_Bd-;
+      font-family: AirbnbCerealBd;
       width: 100%;
       height: 100%;
       font-size: 16px;

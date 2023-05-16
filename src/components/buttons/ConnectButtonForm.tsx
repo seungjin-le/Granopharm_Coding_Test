@@ -34,7 +34,7 @@ const CustomAntConnectBtn = styled(Button)`
     width: 170px;
     height: 19px;
     flex-grow: 0;
-    //font-family: AirbnbCereal_W_Bd-;
+    font-family: AirbnbCerealBd;
     font-size: 15px;
     font-weight: normal;
     font-stretch: normal;

@@ -6,17 +6,17 @@ import SmallCard from 'components/cards/SmailCard'
 import CardForm from 'components/cards/CardForm'
 import PriceSection from 'components/cards/PriceSection'
 
-interface ContentCardListItemProps {
-  asset: Asset
-}
-
 /**
  * 콘텐츠 카드 리스트 아이템 컴포넌트
- * @param {Asset} asset - 아티스트 정보
+ * @param {Assets} asset - 아티스트 정보
  * @returns {JSX.Element} - 콘텐츠 카드 리스트 아이템 컴포넌트
  */
 
-const ContentCardListItem = ({asset}: ContentCardListItemProps) => {
+interface CardItemProps {
+  asset: Asset
+}
+
+const ContentCardListItem = ({asset}: CardItemProps) => {
   const [state, setState] = useState<Asset | null>(asset)
   useEffect(() => {
     setState(asset)
@@ -75,7 +75,7 @@ const CardBox = styled.div`
 // Specific Styled Components
 const CustomAntCard = styled(CardBox)`
   min-width: 20rem;
-  height: 20.7rem;
+  height: 20.9rem;
   border: solid 1px #d2d3d4;
   background-color: #fff;
   @media (max-width: 1422px) {
@@ -100,7 +100,7 @@ const CardTextBox = styled.div`
   width: 100%;
   padding: 8px;
   margin-top: 10px;
-
+  font-family: Urbanist;
   .cardTitle {
     font-size: 18px;
     font-weight: bold;
@@ -129,35 +129,4 @@ const CardPriceBox = styled.div`
     justify-content: start;
     margin-top: 4px;
   }
-
-  & .priceTitle {
-    font-size: 14px;
-    font-weight: 500;
-    text-align: left;
-    color: #808191;
-  }
-
-  & .priceTitleEth {
-    font-size: 16px;
-    font-weight: 600;
-    text-align: left;
-    color: #4c4d53;
-    margin-left: 4px;
-  }
-  & .icon {
-    gap: 5.5px;
-    padding: 3.9px;
-    border-radius: 50%;
-    background-color: #ebedfc;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    width: 21px;
-    height: 21px;
-    margin-top: 4px;
-    & span {
-      margin: 0;
-    }
-  }
-}
 `

@@ -29,6 +29,7 @@ const ProfileImage = () => {
       label: <ConnectButtonForm text={'Connect Wallet'} />,
       key: 'connectBtn',
       onClick: async () => {
+        setHandleOpenMenu(false)
         await connection()
       },
     },
@@ -84,14 +85,7 @@ const ProfileImage = () => {
 
 export default ProfileImage
 
-const CustomAntDropDown = styled(Dropdown)`
-  //.ant-dropdown-trigger
-  & .ant-dropdown-open .arrowBtn {
-    background: red !important;
-    margin-top: 400px;
-    color: red;
-  }
-`
+const CustomAntDropDown = styled(Dropdown)``
 
 const CustomAntProfileBtn = styled.div<ProfileArrowBtn>`
   display: flex;

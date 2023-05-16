@@ -14,7 +14,7 @@ const CustomAntHeaderTitle = styled(Typography)`
   height: 23px;
   flex-grow: 0;
   margin: 0 0 0 8px;
-  //font-family: Urbanist;
+  font-family: Urbanist;
   font-size: 18px;
   font-weight: 800;
   font-stretch: normal;

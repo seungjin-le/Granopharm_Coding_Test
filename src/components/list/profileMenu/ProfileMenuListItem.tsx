@@ -26,7 +26,7 @@ const CustomAntProfileMenuListItem = styled(Typography)`
   flex-direction: row;
   margin: 20px 26px 19px 4px;
   & span {
-    //font-family: AirbnbCereal_W_Md-;
+    font-family: AirbnbCerealMd;
     font-size: 15px;
     font-weight: normal;
     font-stretch: normal;

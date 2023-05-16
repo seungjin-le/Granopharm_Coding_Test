@@ -4,7 +4,8 @@ import ProfileImage from 'components/images/ProfileImage'
 import {Layout, Row} from 'antd'
 import styled from 'styled-components'
 import {TitleText} from 'lodash'
-import HeaderProfileArrowsBtn from 'components/images/HeaderProfileArrowsBtn'
+import HeaderImageBtn from 'components/buttons/HeaderImageBtn'
+import {Link} from 'react-router-dom'
 
 /**
  * 페이지 헤더 컴포넌트
@@ -16,10 +17,12 @@ import HeaderProfileArrowsBtn from 'components/images/HeaderProfileArrowsBtn'
 const PageHeader = ({title}: TitleText) => {
   return (
     <CustomAntHeader>
-      <Row>
-        <HeaderProfileArrowsBtn src={'logo-3'} alt={'Logo'} size={24} />
-        <HeaderTitleForm title={title} />
-      </Row>
+      <Link to={'/'}>
+        <Row>
+          <HeaderImageBtn src={'logo-3'} alt={'Logo'} size={24} />
+          <HeaderTitleForm title={title} />
+        </Row>
+      </Link>
       <ProfileImage />
     </CustomAntHeader>
   )
@@ -34,7 +37,7 @@ const CustomAntHeader = styled(Layout)`
   height: 76px;
   padding: 18px 28px 2px 36px;
   background-color: #fff;
-  & > div > article {
+  & > a > div > article {
     margin-left: 20px;
   }
 `

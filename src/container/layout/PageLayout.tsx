@@ -9,6 +9,7 @@ import {useEffect, useState} from 'react'
 import ApiConfig, {HttpMethod} from 'dataManager/apiConfig'
 import {EndPoint} from 'dataManager/apiMapper'
 import {Asset, PageLayoutProps} from 'lodash'
+import {useNavigate} from 'react-router-dom'
 
 /**
  * 페이지 레이아웃 컴포넌트
@@ -18,11 +19,11 @@ import {Asset, PageLayoutProps} from 'lodash'
 
 const PageLayout = ({children}: PageLayoutProps) => {
   const [items, setItems] = useState([])
-  console.log(children)
+  const navigate = useNavigate()
 
   const getDate = async (tabKey?: string) => {
-    console.log(`${tabKey} Date Load`)
-    setItems([]) // 아이템 초기화
+    console.log(`${tabKey} Date Load${children}`)
+    setItems([]) // 아이템 초기화, API 데이터를 받기 전까지 로딩
     try {
       const {
         data: {bundles},
@@ -52,7 +53,9 @@ const PageLayout = ({children}: PageLayoutProps) => {
   }
 
   const handleOnChangeTap = (tabKey: string) => {
+    // 텝 이동시 tabKey를 이용한 API요청
     getDate(tabKey)
+    navigate(`/${tabKey}`)
   }
 
   const handleOnChangeScroll = () => {

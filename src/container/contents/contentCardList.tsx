@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {Avatar, Card, Layout} from 'antd'
 import ContentCardListItem from 'components/cards/ContentCardListItem'
-import {Assets} from 'lodash'
+import {Asset, Assets} from 'lodash'
 import Meta from 'antd/es/card/Meta'
 
 /**
@@ -14,7 +14,7 @@ const ContentCardList = ({assets}: Assets) => {
   return (
     <CustomAntCardList>
       {assets.length ? (
-        assets?.map((asset, index) => {
+        assets?.map((asset: Asset, index: number) => {
           return <ContentCardListItem asset={asset} key={index} />
         })
       ) : (
@@ -32,14 +32,22 @@ const ContentCardList = ({assets}: Assets) => {
 
 export default ContentCardList
 
-// Common Styled Components
+// 카드 리스트 컨테이너
 const CustomAntCardList = styled(Layout)`
   background: #fff;
+  margin-top: 50px;
   padding: 0 84px;
   width: 100%;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: 100%;
-  justify-content: space-between;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-gap: 12px;
+  @media (max-width: 1422px) {
+    justify-items: center;
+  }
+  @media (max-width: 962px) {
+    justify-items: center;
+  }
+  @media (max-width: 898px) {
+    justify-items: center;
+  }
 `

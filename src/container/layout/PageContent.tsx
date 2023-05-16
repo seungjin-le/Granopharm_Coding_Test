@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Layout} from 'antd'
-import ContentCardList from 'components/list/contents/contentCardList'
+import ContentCardList from 'container/contents/contentCardList'
 import {Assets} from 'lodash'
 
 /**
@@ -23,4 +23,7 @@ export default PageContent
 const CustomAntContent = styled(Layout)`
   padding: 18px 28px 2px 36px;
   background: #ffffff;
+  @media (max-width: 800px) {
+    padding: 0;
+  }
 `

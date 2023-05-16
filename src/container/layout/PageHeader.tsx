@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import {TitleText} from 'lodash'
 import HeaderImageBtn from 'components/buttons/HeaderImageBtn'
 import {Link} from 'react-router-dom'
+import {memo} from 'react'
 
 /**
  * 페이지 헤더 컴포넌트
@@ -19,7 +20,7 @@ const PageHeader = ({title}: TitleText) => {
     <CustomAntHeader>
       <Link to={'/'}>
         <Row>
-          <HeaderImageBtn src={'logo-3'} alt={'Logo'} size={24} />
+          <HeaderImageBtn src={'logo-3'} alt={'Logo'} size={24} className={'headerLogo'} />
           <HeaderTitleForm title={title} />
         </Row>
       </Link>
@@ -28,7 +29,7 @@ const PageHeader = ({title}: TitleText) => {
   )
 }
 
-export default PageHeader
+export default memo(PageHeader)
 
 const CustomAntHeader = styled(Layout)`
   flex-direction: row;

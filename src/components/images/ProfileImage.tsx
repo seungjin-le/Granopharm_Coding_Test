@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {AuthState, ProfileArrowBtn} from 'lodash'
 import {Dropdown, MenuProps, Spin} from 'antd'
-import ConnectButtonForm from 'components/buttonForm/ConnectButtonForm'
+import ConnectButtonForm from 'components/buttons/ConnectButtonForm'
 import styled, {css} from 'styled-components'
-import HeaderProfileArrowsBtn from 'components/images/HeaderProfileArrowsBtn'
+import HeaderImageBtn from 'components/buttons/HeaderImageBtn'
 import {useState} from 'react'
 import ProfileMenuTitleForm from 'components/texts/ProfileMenuTitleForm'
 import {useAuth} from 'utils/UseAuth'
@@ -42,14 +42,14 @@ const ProfileImage = () => {
       type: 'divider',
     },
     {
-      label: <ProfileMenuListItem title={'Setting'} />,
+      label: <ProfileMenuListItem text={'Setting'} />,
       key: 'setting',
     },
     {
       type: 'divider',
     },
     {
-      label: <ProfileMenuListItem title={'Disconnect'} />,
+      label: <ProfileMenuListItem text={'Disconnect'} />,
       key: 'disconnect',
       onClick: async () => {
         await disconnect()
@@ -60,7 +60,6 @@ const ProfileImage = () => {
   return (
     <>
       <Dropdown
-        className={'profileMenu'}
         menu={isLoggedIn ? {items: disconnectMenu} : {items: connectMenu}}
         trigger={['click']}
         placement={'bottomRight'}
@@ -74,7 +73,7 @@ const ProfileImage = () => {
         ) : (
           <CustomAntProfileBtn clickMenuBtn={handleOpenMenu ? 'true' : ''}>
             <HeaderProfileImage isLoggedIn={isLoggedIn} account={wallet?.account} />
-            <HeaderProfileArrowsBtn src={'cheveron'} alt={'Cheveron Image'} size={24} />
+            <HeaderImageBtn src={'cheveron'} alt={'Cheveron Image'} size={24} />
           </CustomAntProfileBtn>
         )}
       </Dropdown>

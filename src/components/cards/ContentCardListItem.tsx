@@ -62,16 +62,6 @@ const ContentCardListItem = ({asset}: ContentCardListItemProps) => {
   )
 }
 
-// const PriceSection = ({text}: string) => (
-//   <div className={'price'}>
-//     <div className={'priceTitle'}>{text}</div>
-//     <div>
-//       <HeaderProfileArrowsBtn src='eth' size={24} alt='eth' />
-//       <div className={'priceTitleEth'}>26.6 ETH</div>
-//     </div>
-//   </div>
-// )
-
 export default ContentCardListItem
 const CardBox = styled.div`
   width: 100%;

@@ -1,4 +1,4 @@
-import HeaderProfileArrowsBtn from 'components/images/HeaderProfileArrowsBtn'
+import HeaderImageBtn from 'components/buttons/HeaderImageBtn'
 import {SubText} from 'lodash'
 
 /**
@@ -12,7 +12,7 @@ const PriceSection = ({text}: SubText) => (
     <div className={'priceTitle'}>{text}</div>
     <div>
       <span className={'icon'}>
-        <HeaderProfileArrowsBtn src='eth' size={24} alt='eth' />
+        <HeaderImageBtn src='eth' size={24} alt='eth' />
       </span>
       <div className={'priceTitleEth'}>26.6 ETH</div>
     </div>

@@ -53,7 +53,6 @@ export const getData = async (url: string) => {
   } catch (error: any) {
     alert(`네트워크 통신 실패. 잠시후 다시 시도해주세요.\n${error.message}`)
   }
-
   //if (!isSuccess || isEmpty(result)) {
   //       return message
   //     }
@@ -65,4 +64,39 @@ export const getData = async (url: string) => {
   //   } catch (error) {
   //     return error
   //   }
+}
+
+/**
+ * 첫 번째 글자를 대문자로 변환한 후 나머지 부분을 잘라서 반환.
+ * @param string: 문자열
+ *
+ */
+export const capitalizeFirstLetter = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+/**
+ * 주어진 숫자를 주어진 자릿수까지 반올림하여 표기합니다.
+ * @param num 숫자
+ * @param digits 자릿수
+ * @returns 표기된 숫자
+ */
+export const nFormatter = (num: number, digits: number) => {
+  const si: {value: number; symbol: string}[] = [
+    {value: 1, symbol: ''},
+    {value: 1e3, symbol: 'K'},
+    {value: 1e6, symbol: 'M'},
+    {value: 1e9, symbol: 'G'},
+    {value: 1e12, symbol: 'T'},
+    {value: 1e15, symbol: 'P'},
+    {value: 1e18, symbol: 'E'},
+  ]
+  let i: number = 0
+  for (i = si.length - 1; i > 0; i--) {
+    if (num >= si[i].value) break
+  }
+  let result = (num / si[i].value).toFixed(digits)
+  // 소수점 아래 첫 번째 자리가 0이라면 제거합니다.
+  if (result.slice(-2) === '.0') result = result.slice(0, -2)
+  return result + si[i].symbol
 }

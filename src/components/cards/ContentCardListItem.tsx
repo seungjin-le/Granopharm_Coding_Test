@@ -21,7 +21,6 @@ const ContentCardListItem = ({asset}: ContentCardListItemProps) => {
   useEffect(() => {
     setState(asset)
   }, [])
-
   return (
     <CustomAntCard>
       <Col style={{width: '100%'}}>
@@ -33,18 +32,15 @@ const ContentCardListItem = ({asset}: ContentCardListItemProps) => {
           </Col>
           <Col span={12} flex={1} style={{height: '100%'}}>
             <CardBox>
-              {state?.assetImages.map((imgUrl, index, imgUrls) => {
-                if (index < 4)
-                  return (
-                    <SmallCard
-                      imgSrc={imgUrl}
-                      altText={'alt'}
-                      key={index}
-                      lastImage={index === 3 || imgUrls.length - 1 === index}
-                    />
+              {state?.assetImages.length &&
+                // SmallCard의 개수가 4개 미만일 경우 추가 카드 생성
+                Array.from({length: 4}).map((_, index) => {
+                  return state.assetImages[index] ? (
+                    <SmallCard imgSrc={state?.assetImages[index]} key={index} altText={'alt'} lastImage={index === 3} />
+                  ) : (
+                    <SmallCard imgSrc={state?.assetImages[1]} key={index} altText={'alt'} lastImage={index === 3} />
                   )
-                return null
-              })}
+                })}
             </CardBox>
           </Col>
         </Row>

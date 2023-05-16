@@ -2,9 +2,15 @@ import {Card} from 'antd'
 import styled from 'styled-components'
 import {maskString} from 'utils/utility'
 
-type WalletAccount = {
-  account?: string
+interface WalletAccount {
+  account: string
 }
+
+/**
+ * 프로필 메뉴 리스트 아이콘 컴포넌트
+ * @param {string} account - 지갑 계정 주소
+ * @returns {JSX.Element} - 아이콘 컴포넌트
+ */
 
 const ProfileMenuListIcon = ({account}: WalletAccount) => {
   return (

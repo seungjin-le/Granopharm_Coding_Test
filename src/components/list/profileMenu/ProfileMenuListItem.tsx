@@ -1,12 +1,18 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import {Typography} from 'antd'
-import {TitleText} from 'lodash'
+import {SubText} from 'lodash'
 
-const ProfileMenuListItem = ({title}: TitleText) => {
+/**
+ * 프로필 메뉴 리스트 아이템 컴포넌트
+ * @param {string} title - 아이템 제목
+ * @returns {JSX.Element} - 아이템 컴포넌트
+ */
+
+const ProfileMenuListItem = ({text}: SubText) => {
   return (
     <CustomAntProfileMenuListItem>
-      <span>{title}</span>
+      <span>{text}</span>
     </CustomAntProfileMenuListItem>
   )
 }

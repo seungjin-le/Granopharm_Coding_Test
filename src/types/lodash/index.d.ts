@@ -33,13 +33,6 @@ declare module 'lodash' {
     text: string
   }
 
-  // UserMenuBtn 타입 정의
-  export interface ProfileMenuBtnProps {
-    openProfileMenu: (event?: React.MouseEvent<HTMLElement>) => void
-    closeProfileMenu: () => void
-    users?: {} | null | undefined
-  }
-
   // ImageProps 타입 정의
   export interface ImageProps {
     src: string
@@ -79,20 +72,28 @@ declare module 'lodash' {
     isConnecting: boolean
   }
 
-  // Asset 타입 정의
-  export interface Asset {
+  // Asset API 데이터 타입 정의
+  export interface AssetAPI {
     asset_contract: {
       name: string
       image_url: string
     }
     assetMainImage: string
-    assetImages: string[]
-    permalink: string
-    assetName: string
+    assetImages?: string[]
+    permalink?: string
+    assetName?: string
     assets: {
       image_thumbnail_url: string
     }[]
   }
+  // Asset 타입 정의
+  export interface Asset {
+    assetImages: string[]
+    assetLink: string
+    assetMainImage: string
+    assetName: string
+  }
+
   // Asset 배열 타입 정의
   export interface Assets {
     assets: Asset[]
@@ -105,9 +106,15 @@ declare module 'lodash' {
     lastImage?: boolean
   }
 
-  // ChangeTab 타입 정의
-  export interface ChangeTab {
+  export interface PageTab {
+    key: string
+    count: number
+  }
+
+  // PageTabProps 타입 정의
+  export interface PageTabProps {
     handleOnChangeTap: (tabKey: string) => void
+    pageTabs?: PageTab[]
   }
 
   // InfiniteScroll 타입 정의

@@ -1,13 +1,12 @@
 import PageHeader from 'container/layout/PageHeader'
 import PageContent from 'container/layout/PageContent'
 import PageFooter from 'container/layout/PageFooter'
-import './PageLayout.scss'
 import PageTabs from 'container/layout/PageTabs'
 import styled from 'styled-components'
 import {Layout, Space} from 'antd'
 import {useEffect, useState} from 'react'
 import {EndPoint} from 'dataManager/apiMapper'
-import {Asset, PageLayoutProps} from 'lodash'
+import {AssetAPI, PageLayoutProps, PageTab} from 'lodash'
 import {useNavigate} from 'react-router-dom'
 import {getData} from 'utils/utility'
 
@@ -19,6 +18,13 @@ import {getData} from 'utils/utility'
 
 const PageLayout = ({children}: PageLayoutProps) => {
   const [items, setItems] = useState([])
+
+  const pageTabTest: PageTab[] = [
+    {key: 'all', count: 2899},
+    {key: 'collections', count: 2829},
+    {key: 'singles', count: 1999},
+  ]
+
   const navigate = useNavigate()
 
   const getDate = async (tabKey?: string) => {
@@ -28,7 +34,7 @@ const PageLayout = ({children}: PageLayoutProps) => {
     await getData(EndPoint.GET_OPENSEA_IMAGES)
       .then(({bundles}) => {
         setItems(
-          bundles.map((asset: Asset) => {
+          bundles.map((asset: AssetAPI) => {
             return {
               assetName: asset.asset_contract?.name,
               assetMainImage: asset.asset_contract?.image_url,
@@ -38,6 +44,7 @@ const PageLayout = ({children}: PageLayoutProps) => {
           }),
         )
       })
+
       .catch(err => console.log(err))
   }
 
@@ -59,8 +66,9 @@ const PageLayout = ({children}: PageLayoutProps) => {
     <CustomAntPageLayout direction='vertical' size={[0, 48]}>
       <CustomAntLayoutBox>
         <PageHeader title={'Renaissance Lab.'} />
-        <PageTabs handleOnChangeTap={handleOnChangeTap} />
+        <PageTabs handleOnChangeTap={handleOnChangeTap} pageTabs={pageTabTest} />
         <PageContent assets={items} />
+        {children}
         <PageFooter infiniteScroll={handleOnChangeScroll} />
       </CustomAntLayoutBox>
     </CustomAntPageLayout>

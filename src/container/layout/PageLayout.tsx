@@ -6,10 +6,10 @@ import PageTabs from 'container/layout/PageTabs'
 import styled from 'styled-components'
 import {Layout, Space} from 'antd'
 import {useEffect, useState} from 'react'
-import ApiConfig, {HttpMethod} from 'dataManager/apiConfig'
 import {EndPoint} from 'dataManager/apiMapper'
 import {Asset, PageLayoutProps} from 'lodash'
 import {useNavigate} from 'react-router-dom'
+import {getData} from 'utils/utility'
 
 /**
  * 페이지 레이아웃 컴포넌트
@@ -24,32 +24,21 @@ const PageLayout = ({children}: PageLayoutProps) => {
   const getDate = async (tabKey?: string) => {
     console.log(`${tabKey} Date Load${children}`)
     setItems([]) // 아이템 초기화, API 데이터를 받기 전까지 로딩
-    try {
-      const {
-        data: {bundles},
-      }: any = await ApiConfig.request({
-        method: HttpMethod.GET,
-        url: EndPoint.GET_OPENSEA_IMAGES,
-        data: {},
-        query: {},
-        path: {},
+
+    await getData(EndPoint.GET_OPENSEA_IMAGES)
+      .then(({bundles}) => {
+        setItems(
+          bundles.map((asset: Asset) => {
+            return {
+              assetName: asset.asset_contract?.name,
+              assetMainImage: asset.asset_contract?.image_url,
+              assetLink: asset?.permalink,
+              assetImages: asset.assets?.map(assetImages => assetImages.image_thumbnail_url),
+            }
+          }),
+        )
       })
-      if (bundles.length === 0) {
-        return alert(`Not Data`)
-      }
-      setItems(
-        bundles.map((asset: Asset) => {
-          return {
-            assetName: asset.asset_contract?.name,
-            assetMainImage: asset.asset_contract?.image_url,
-            assetLink: asset?.permalink,
-            assetImages: asset.assets?.map(assetImages => assetImages.image_thumbnail_url),
-          }
-        }),
-      )
-    } catch (error: any) {
-      alert(`네트워크 통신 실패. 잠시후 다시 시도해주세요.\n${error.message}`)
-    }
+      .catch(err => console.log(err))
   }
 
   const handleOnChangeTap = (tabKey: string) => {

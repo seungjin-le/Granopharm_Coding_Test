@@ -119,7 +119,7 @@
 │ ├── logo.svg
 │ ├── pages
 │ │ └── home
-│ │     └── Home.tsx
+│ │     └── Home.tsx.tsx
 │ ├── react-app-env.d.ts
 │ ├── reportWebVitals.ts
 │ ├── setupTests.ts

@@ -9,6 +9,7 @@ import {useAuth} from 'utils/UseAuth'
 import ProfileMenuListItem from 'components/list/profileMenu/ProfileMenuListItem'
 import ProfileMenuListIcon from 'components/list/profileMenu/ProfileMenuListIcon'
 import HeaderProfileImage from 'components/images/HeaderProfileImage'
+import WalletBalance from 'components/texts/WalletBalance'
 
 /**
  * 프로필 이미지와 트롭다운 메뉴 컴포넌트
@@ -17,7 +18,21 @@ import HeaderProfileImage from 'components/images/HeaderProfileImage'
  */
 
 const ProfileImage = () => {
-  const {isLoggedIn, connection, disconnect, wallet, isConnecting}: AuthState = useAuth()
+  // 인증 상태와 관련된 정보를 가져옴
+  const {
+    // isLoggedIn: 로그인 여부를 나타내는 boolean 값
+    isLoggedIn,
+    // connection: 월렛 연결 함수
+    connection,
+    // disconnect: 월렛 연결 해제 함수
+    disconnect,
+    // wallet: 월렛 정보 객체
+    wallet,
+    // isConnecting: 월렛 연결 중인지 여부를 나타내는 boolean 값
+    isConnecting,
+  }: AuthState = useAuth()
+
+  // Connect 메뉴 아이템
   const connectMenu: MenuProps['items'] = [
     {
       label: <ProfileMenuTitleForm title={'Connect'} />,
@@ -32,6 +47,8 @@ const ProfileImage = () => {
       },
     },
   ]
+
+  // Disconnect 메뉴 아이템
   const disconnectMenu: MenuProps['items'] = [
     {
       label: <ProfileMenuListIcon account={wallet.account} />,
@@ -57,25 +74,24 @@ const ProfileImage = () => {
   ]
 
   return (
-    <>
-      <CustomAntDropDown
-        menu={isLoggedIn ? {items: disconnectMenu} : {items: connectMenu}}
-        trigger={['click']}
-        placement={'bottomRight'}
-        overlayClassName={'profileDropDownMenu'}
-      >
-        {/* handleOpenMenu의 bool값을 styled-components에 props넘길시 React-Dom에서 컴포넌트로 인식 */}
-        {isConnecting ? (
-          // 로그인 시도중 로딩
-          <Spin />
-        ) : (
-          <CustomAntProfileBtn>
-            <HeaderProfileImage isLoggedIn={isLoggedIn} account={wallet?.account} />
-            <HeaderImageBtn src={'cheveron'} alt={'Cheveron Image'} size={24} className={'arrowBtn'} />
-          </CustomAntProfileBtn>
-        )}
-      </CustomAntDropDown>
-    </>
+    <CustomAntDropDown
+      menu={isLoggedIn ? {items: disconnectMenu} : {items: connectMenu}}
+      trigger={['click']}
+      placement={'bottomRight'}
+      overlayClassName={'profileDropDownMenu'}
+    >
+      {/* handleOpenMenu의 bool값을 styled-components에 props넘길시 React-Dom에서 컴포넌트로 인식 */}
+      {isConnecting ? (
+        // 로그인 시도중 로딩
+        <Spin />
+      ) : (
+        <CustomAntProfileBtn>
+          {isLoggedIn && <WalletBalance text={wallet?.ethBalance || '0'} />}
+          <HeaderProfileImage isLoggedIn={isLoggedIn} account={wallet?.account} />
+          <HeaderImageBtn src={'cheveron'} alt={'Cheveron Image'} size={24} className={'arrowBtn'} />
+        </CustomAntProfileBtn>
+      )}
+    </CustomAntDropDown>
   )
 }
 
@@ -101,5 +117,8 @@ const CustomAntProfileBtn = styled.div`
       border: #7a7a7a;
       color: #7a7a7a;
     }
+  }
+  & .arrowBtn {
+    margin-left: 4px;
   }
 `

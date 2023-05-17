@@ -1,10 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit'
-import {CardSlice} from './redux/cards/CardSlice'
 import {CurrentPageSlice} from 'store/redux/pages/CurrentPage'
+import {AssetsSlice} from 'store/redux/cards/AssetsSlice'
 
 export const store = configureStore({
   reducer: {
-    cards: CardSlice.reducer,
+    assets: AssetsSlice.reducer,
     currentPage: CurrentPageSlice.reducer,
   },
 })

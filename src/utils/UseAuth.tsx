@@ -3,6 +3,7 @@ import {useWeb3React} from '@web3-react/core'
 import {AbstractConnector} from '@web3-react/abstract-connector'
 import Web3 from 'web3'
 import {WalletState} from 'lodash'
+import {browserName} from 'react-device-detect'
 
 /**
  * 웹3 연결 및 로그인 관련 기능을 제공하는 커스텀 훅.
@@ -16,7 +17,6 @@ export function useAuth() {
   const web3 = new Web3(ethereum)
   const [wallet, setWallet] = useState<WalletState>({id: '', account: '', weiBalance: '', ethBalance: '', invoker: ''})
   // 현재 사용 중인 브라우저확인.
-  const userAgent = navigator.userAgent.toLowerCase()
 
   /**
    * 로컬 스토리지에 저장된 계정 정보를 확인하여 자동으로 로그인을 수행.
@@ -43,17 +43,20 @@ export function useAuth() {
 
   // 월렛에 연결하는 함수입니다.
   const connection = async () => {
-    let browsers: string[] = ['chrome', 'firefox', 'safari', 'edge', 'opera', 'brave', 'vivaldi']
+    // 메타마스크를 지원하는 브라우저들의 이름배열
+    const browsers: string[] = ['chrome', 'firefox', 'safari', 'edge', 'opera', 'brave', 'vivaldi']
 
-    if (!browsers.map((browser: string) => userAgent.includes(browser))) {
-      if (!ethereum) return alert('메타마스크 플러그인을 설치해 주시기 바랍니다.')
+    // 메타마스크를 지원하는 브라우저인지 확인하고, 현재 브라우저가 이더리움과 통신 중인지 (플러그인 설치하고 로그인한 상태) 확인.
+    if (browsers.includes(browserName.toLowerCase()) && !ethereum) {
+      return alert('메타마스크 플러그인을 설치해 주시기 바랍니다.')
     }
-    //
-    if (!ethereum)
+
+    // 메타마스크를 지원하지 않는 브라우저인지 확인.
+    if (!ethereum) {
       return alert(
         '메타 마스크 플러그인을 지원하는 브라우저에서 로그인해 주시기 바랍니다. \n\n ex) Google Chrome, Mozilla Firefox, Microsoft Edge, Brave Browser, Opera',
       )
-
+    }
     setIsConnecting(true)
     try {
       const accounts = await ethereum.request({

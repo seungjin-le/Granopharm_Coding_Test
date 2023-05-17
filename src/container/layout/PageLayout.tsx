@@ -28,9 +28,9 @@ const PageLayout = ({children}: PageLayoutProps) => {
   const dispatch = useDispatch()
   let currentPage = useSelector((state: any) => state.currentPage.value)
 
-  // 다른 페이지 추가시 분리
+  // 다른 페이지 추가시 API 로직 분리
   const getDate = async (tabKey?: string) => {
-    console.log(`${tabKey || 'all'} Date Load${children} Page${currentPage}`)
+    console.log(`${tabKey} Page${currentPage}`)
 
     await getData(EndPoint.GET_OPENSEA_IMAGES)
       .then(({bundles}) => {

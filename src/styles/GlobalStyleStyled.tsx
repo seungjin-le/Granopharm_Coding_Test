@@ -5,10 +5,6 @@ import GilroyExtraBold from '../assets/fonts/gilroy/Gilroy-ExtraBold.otf'
 import GilroyLight from '../assets/fonts/gilroy/Gilroy-Light.otf'
 import Urbanist from '../assets/fonts/urbanist/Urbanist-Black.ttf'
 
-//Gilroy-ExtraBold
-
-//src/assets/fonts/airbnb/AirbnbCereal_W_Bd.otf
-
 const GlobalStyleStyled = () => {
   return <GlobalStyle />
 }

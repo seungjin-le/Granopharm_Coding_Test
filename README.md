@@ -1,4 +1,47 @@
-# 프로젝트 폴더 구조
+
+# 배포 URL
+### https://granopam.netlify.app/
+
+# 주요 기능
+### - 기능 1: XXX 기능을 제공합니다.  
+
+기능 2: XXX 기능을 제공합니다.
+기능 3: XXX 기능을 제공합니다.
+
+# 설치 및 실행 방법
+프로젝트를 설치하고 실행하는 방법에 대한 가이드를 작성합니다. 필요한 종속성 설치 방법이나 실행 스크립트 등을 포함합니다.
+
+
+## 프로젝트 설치
+```shell
+npm install
+
+or
+
+yarn install
+```
+
+## 프로젝트 실행
+```shell
+npm start
+
+or
+
+yarn start
+```
+
+사용 기술 및 도구
+프로젝트에서 사용된 주요 기술과 도구를 나열합니다.
+
+React
+Redux
+TypeScript
+Webpack
+Babel
+등
+
+
+# 디렉토리 구조
 
 
 ```shell

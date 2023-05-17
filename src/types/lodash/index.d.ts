@@ -41,12 +41,6 @@ declare module 'lodash' {
     className: string
   }
 
-  // 프로필 화살표 버튼 styled-components Props Type
-  export interface ProfileArrowBtn {
-    // 대문자가 포함되면 리액트에서 이벤트로 인식하여 에러 발생
-    clickMenuBtn: string
-  }
-
   // ProfileMenuBtn 타입 정의
   export interface ProfileMenuBtn {
     account: string

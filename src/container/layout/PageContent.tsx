@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {memo} from 'react'
 import styled from 'styled-components'
 import {Layout} from 'antd'
 import ContentCardList from 'container/contents/contentCardList'
-import {Assets} from 'lodash'
+import {useSelector} from 'react-redux'
+import {RootState} from 'store/store'
 
 /**
  * 페이지 컨텐츠 컴포넌트
@@ -10,15 +11,17 @@ import {Assets} from 'lodash'
  * @returns {JSX.Element} - 페이지 컨텐츠 컴포넌트
  */
 
-const PageContent = ({assets}: Assets) => {
+const PageContent = () => {
+  const items = useSelector((state: RootState) => state.cards)
+
   return (
     <CustomAntContent>
-      <ContentCardList assets={assets} />
+      <ContentCardList assets={items} />
     </CustomAntContent>
   )
 }
 
-export default PageContent
+export default memo(PageContent)
 
 const CustomAntContent = styled(Layout)`
   padding: 18px 28px 2px 36px;

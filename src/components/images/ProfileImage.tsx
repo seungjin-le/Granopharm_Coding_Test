@@ -1,10 +1,9 @@
 import * as React from 'react'
-import {AuthState, ProfileArrowBtn} from 'lodash'
+import {AuthState} from 'lodash'
 import {Dropdown, MenuProps, Spin} from 'antd'
 import ConnectButtonForm from 'components/buttons/ConnectButtonForm'
 import styled from 'styled-components'
 import HeaderImageBtn from 'components/buttons/HeaderImageBtn'
-import {useState} from 'react'
 import ProfileMenuTitleForm from 'components/texts/ProfileMenuTitleForm'
 import {useAuth} from 'utils/UseAuth'
 import ProfileMenuListItem from 'components/list/profileMenu/ProfileMenuListItem'
@@ -16,8 +15,8 @@ import HeaderProfileImage from 'components/images/HeaderProfileImage'
  *
  * @returns {JSX.Element} 프로필 이미지와 드롭다운 컴포넌트
  */
+
 const ProfileImage = () => {
-  const [handleOpenMenu, setHandleOpenMenu] = useState<boolean>(false)
   const {isLoggedIn, connection, disconnect, wallet, isConnecting}: AuthState = useAuth()
   const connectMenu: MenuProps['items'] = [
     {
@@ -29,7 +28,6 @@ const ProfileImage = () => {
       label: <ConnectButtonForm text={'Connect Wallet'} />,
       key: 'connectBtn',
       onClick: async () => {
-        setHandleOpenMenu(false)
         await connection()
       },
     },
@@ -53,7 +51,6 @@ const ProfileImage = () => {
       label: <ProfileMenuListItem text={'Disconnect'} />,
       key: 'disconnect',
       onClick: async () => {
-        setHandleOpenMenu(false)
         await disconnect()
       },
     },
@@ -66,14 +63,13 @@ const ProfileImage = () => {
         trigger={['click']}
         placement={'bottomRight'}
         overlayClassName={'profileDropDownMenu'}
-        onOpenChange={(open: boolean) => setHandleOpenMenu(open)}
       >
         {/* handleOpenMenu의 bool값을 styled-components에 props넘길시 React-Dom에서 컴포넌트로 인식 */}
         {isConnecting ? (
           // 로그인 시도중 로딩
           <Spin />
         ) : (
-          <CustomAntProfileBtn clickMenuBtn={handleOpenMenu ? 'true' : ''}>
+          <CustomAntProfileBtn>
             <HeaderProfileImage isLoggedIn={isLoggedIn} account={wallet?.account} />
             <HeaderImageBtn src={'cheveron'} alt={'Cheveron Image'} size={24} className={'arrowBtn'} />
           </CustomAntProfileBtn>
@@ -87,7 +83,7 @@ export default ProfileImage
 
 const CustomAntDropDown = styled(Dropdown)``
 
-const CustomAntProfileBtn = styled.div<ProfileArrowBtn>`
+const CustomAntProfileBtn = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: end;

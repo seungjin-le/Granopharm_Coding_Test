@@ -1,5 +1,4 @@
 import React, {Suspense} from 'react'
-import './App.css'
 import 'lodash'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import PageLayout from 'container/layout/PageLayout'
@@ -12,7 +11,13 @@ function App() {
         <PageLayout>
           <Routes>
             <Route path={'/'} element={<Home />} />
-            {/*<Route path={'*'} element={<Home />} />*/}
+            <Route path={'/all'} element={<Home />} />
+            <Route path={'/collections'} element={<Home />} />
+            <Route path={'/singles'} element={<Home />} />
+            {/*
+              <Route path={'/404'} element={<Page404 />} />
+              <Route path={'/500'} element={<Page500 />} />
+            */}
           </Routes>
         </PageLayout>
       </BrowserRouter>

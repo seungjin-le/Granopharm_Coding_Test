@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from 'App'
-import reportWebVitals from './reportWebVitals'
 import 'antd/dist/antd.min.js.map'
 import {ExternalProvider, JsonRpcFetchFunc, Web3Provider} from '@ethersproject/providers'
 import {Web3ReactProvider} from '@web3-react/core'
 import GlobalStyleStyled from 'styles/GlobalStyleStyled'
+import {Provider} from 'react-redux'
+import {store} from 'store/store'
 
 const getLibrary = (provider: ExternalProvider | JsonRpcFetchFunc): Web3Provider => {
   return new Web3Provider(provider, 'any')
@@ -13,15 +14,10 @@ const getLibrary = (provider: ExternalProvider | JsonRpcFetchFunc): Web3Provider
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-  <React.StrictMode>
+  <Web3ReactProvider getLibrary={getLibrary}>
     <GlobalStyleStyled />
-    <Web3ReactProvider getLibrary={getLibrary}>
+    <Provider store={store}>
       <App />
-    </Web3ReactProvider>
-  </React.StrictMode>,
+    </Provider>
+  </Web3ReactProvider>,
 )
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals()

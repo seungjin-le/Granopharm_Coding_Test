@@ -52,7 +52,7 @@ declare module 'lodash' {
   export type WalletState = {
     id: string
     account: any
-    weiBalance: string
+    weiBalance: any
     ethBalance: string
     invoker: string
   }

@@ -12,10 +12,10 @@ function App() {
       <BrowserRouter>
         <PageLayout>
           <Routes>
+            <Route path='/' element={<AllTab />} />
             <Route path={'/all'} element={<AllTab />} />
             <Route path='/singles' element={<SinglesTab />} />
             <Route path='/collections' element={<CollectionsTab />} />
-            <Route path='/' element={<Navigate to='/all' replace />} />
             <Route path='/*' element={<Navigate to='/all' replace />} />
             {/*
               <Route path={'/404'} element={<Page404 />} />

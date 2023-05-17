@@ -2,7 +2,9 @@ import React, {Suspense} from 'react'
 import 'lodash'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import PageLayout from 'container/layout/PageLayout'
-import Home from 'pages/home/Home'
+import AllTab from 'pages/home/AllTab'
+import SinglesTab from 'pages/home/SinglesTab'
+import CollectionsTab from 'pages/home/CollectionsTab'
 
 function App() {
   return (
@@ -10,11 +12,13 @@ function App() {
       <BrowserRouter>
         <PageLayout>
           <Routes>
-            <Route path={'/'} element={<Home />} />
-            <Route path={'/all'} element={<Home />} />
-            <Route path={'/collections'} element={<Home />} />
-            <Route path={'/singles'} element={<Home />} />
+            <Route path={'/all'} element={<AllTab />} />
+            <Route path='/singles' element={<SinglesTab />} />
+            <Route path='/collections' element={<CollectionsTab />} />
+
             {/*
+            <Route path='/*' element={<Navigate to='/all' replace />} />
+            <Route path='*' element={<Navigate to='/' replace />} />
               <Route path={'/404'} element={<Page404 />} />
               <Route path={'/500'} element={<Page500 />} />
             */}

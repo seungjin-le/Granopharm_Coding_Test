@@ -7,7 +7,7 @@ const initialState: CardsState = []
 
 export const resetCards = createAction('cards/reset')
 
-export const CardSlice = createSlice({
+export const AssetsSlice = createSlice({
   name: 'cards',
   initialState,
   reducers: {
@@ -25,6 +25,6 @@ export const CardSlice = createSlice({
   },
 })
 
-export const {setCards, addCards} = CardSlice.actions
+export const {setCards, addCards} = AssetsSlice.actions
 
-export default CardSlice.reducer
+export default AssetsSlice.reducer

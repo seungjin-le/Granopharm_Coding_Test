@@ -38,7 +38,8 @@ declare module 'lodash' {
     src: string
     alt: string
     size: number
-    className: string
+    className?: string
+    background?: string
   }
 
   // ProfileMenuBtn 타입 정의

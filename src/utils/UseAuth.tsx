@@ -51,7 +51,7 @@ export function useAuth() {
     //
     if (!ethereum)
       return alert(
-        '메타 마스크 플러그인을 지원하는 브라우저에서 로그인해 주시기 바랍니다. ex) Google Chrome, Mozilla Firefox, Microsoft Edge, Brave Browser, Opera',
+        '메타 마스크 플러그인을 지원하는 브라우저에서 로그인해 주시기 바랍니다. \n\n ex) Google Chrome, Mozilla Firefox, Microsoft Edge, Brave Browser, Opera',
       )
 
     setIsConnecting(true)

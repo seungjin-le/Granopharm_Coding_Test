@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react'
 import 'lodash'
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom'
 import PageLayout from 'container/layout/PageLayout'
 import AllTab from 'pages/home/AllTab'
 import SinglesTab from 'pages/home/SinglesTab'
@@ -15,10 +15,8 @@ function App() {
             <Route path={'/all'} element={<AllTab />} />
             <Route path='/singles' element={<SinglesTab />} />
             <Route path='/collections' element={<CollectionsTab />} />
-
-            {/*
             <Route path='/*' element={<Navigate to='/all' replace />} />
-            <Route path='*' element={<Navigate to='/' replace />} />
+            {/*
               <Route path={'/404'} element={<Page404 />} />
               <Route path={'/500'} element={<Page500 />} />
             */}

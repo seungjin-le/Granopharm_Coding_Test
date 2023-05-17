@@ -1,16 +1,15 @@
 import PageHeader from 'container/layout/PageHeader'
-import PageContent from 'container/layout/PageContent'
 import PageFooter from 'container/layout/PageFooter'
 import PageTabs from 'container/layout/PageTabs'
 import styled from 'styled-components'
 import {Layout, Space} from 'antd'
-import {memo, useEffect} from 'react'
+import React, {memo, useEffect} from 'react'
 import {EndPoint} from 'dataManager/apiMapper'
 import {AssetAPI, PageLayoutProps, PageTab} from 'lodash'
 import {useNavigate} from 'react-router-dom'
 import {getData} from 'utils/utility'
 import {useDispatch, useSelector} from 'react-redux'
-import {addCards, resetCards} from 'store/redux/cards/CardSlice'
+import {addCards, resetCards} from 'store/redux/cards/AssetsSlice'
 import {incrementCurrentPage, resetCurrentPage} from 'store/redux/pages/CurrentPage'
 
 /**
@@ -29,6 +28,7 @@ const PageLayout = ({children}: PageLayoutProps) => {
   const dispatch = useDispatch()
   let currentPage = useSelector((state: any) => state.currentPage.value)
 
+  // 다른 페이지 추가시 분리
   const getDate = async (tabKey?: string) => {
     console.log(`${tabKey || 'all'} Date Load${children} Page${currentPage}`)
 
@@ -51,13 +51,18 @@ const PageLayout = ({children}: PageLayoutProps) => {
   }
   // 텝 이동시 tabKey를 이용한 API요청 함수
   const handleOnChangeTap = (tabKey: string) => {
-    // url 이동
-    navigate(`/${tabKey}`)
+    // URL 이동
+    navigate({
+      pathname: tabKey,
+    })
+
     // 카드 리스트 초기화
     dispatch(resetCards())
-    // 현제 페이지 초기화
+
+    // 현재 페이지 초기화
     dispatch(resetCurrentPage())
-    // tabKey로 API요청
+
+    // TabKey를 사용하여 API 요청
     getDate(tabKey)
   }
 
@@ -76,7 +81,6 @@ const PageLayout = ({children}: PageLayoutProps) => {
       <CustomAntLayoutBox>
         <PageHeader title={'Renaissance Lab.'} />
         <PageTabs handleOnChangeTap={handleOnChangeTap} pageTabs={pageTabTest} />
-        <PageContent />
         {children}
         <PageFooter infiniteScroll={handleOnChangeScroll} />
       </CustomAntLayoutBox>

@@ -3,6 +3,7 @@ import {Layout, Tabs} from 'antd'
 import styled from 'styled-components'
 import {PageTabProps} from 'lodash'
 import {capitalizeFirstLetter, nFormatter} from 'utils/utility'
+import {useLocation} from 'react-router-dom'
 
 /**
  * 페이지 탭 컴포넌트
@@ -12,10 +13,12 @@ import {capitalizeFirstLetter, nFormatter} from 'utils/utility'
  */
 
 const PageTabs = ({handleOnChangeTap, pageTabs}: PageTabProps) => {
+  const location = useLocation()
   return (
     <CustomAntTabs>
       {/* Ant Design Tabs 컴포넌트 */}
       <Tabs
+        activeKey={location.pathname.slice(1) || 'all'}
         onTabClick={tabKey => handleOnChangeTap(tabKey)}
         items={pageTabs?.map(value => {
           return {
@@ -58,6 +61,9 @@ const CustomAntTabs = styled(Layout)`
   }
   & .ant-tabs-nav-wrap {
     padding: 18px 28px 2px 100px;
+    @media (max-width: 459px) {
+      padding: 18px 28px 2px 36px;
+    }
   }
   & .ant-tabs-tab.ant-tabs-tab-active div {
     color: #000 !important;
@@ -65,6 +71,12 @@ const CustomAntTabs = styled(Layout)`
   & .ant-tabs-nav-list .ant-tabs-tab {
     text-align: center;
     margin-left: 22px;
+    @media (max-width: 459px) {
+      margin-left: 15px;
+    }
+  }
+  & .ant-tabs-nav-list .ant-tabs-tab:hover {
+    color: #000;
   }
   .ant-tabs-ink-bar {
     border-bottom: 2px solid #000;

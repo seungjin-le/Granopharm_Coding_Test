@@ -1,4 +1,4 @@
-import {Col, Row} from 'antd'
+import {Button, Col, Row} from 'antd'
 import styled from 'styled-components'
 import {Asset} from 'lodash'
 import {useEffect, useState} from 'react'
@@ -17,12 +17,17 @@ interface CardItemProps {
 }
 
 const ContentCardListItem = ({asset}: CardItemProps) => {
-  const [state, setState] = useState<Asset | null>(asset)
+  const [state, setState] = useState<Asset | null>()
   useEffect(() => {
     setState(asset)
   }, [])
   return (
     <CustomAntCard>
+      <CardLinkBox className={'linkBox'}>
+        <Button ghost onClick={() => asset?.assetLink && window.open(asset.assetLink, '_blank')}>
+          Link
+        </Button>
+      </CardLinkBox>
       <Col style={{width: '100%'}}>
         <Row style={{height: '64%', minHeight: '64%', maxHeight: '64%'}}>
           <Col span={12} flex={1} style={{height: '100%'}}>
@@ -46,7 +51,7 @@ const ContentCardListItem = ({asset}: CardItemProps) => {
         </Row>
         <Row style={{height: '35%', padding: '2px'}}>
           <CardTextBox>
-            <div className={'cardTitle'}>{asset?.assetName || ''}</div>
+            <div className={'cardTitle'}>{asset?.assetName || 'Not Name'}</div>
           </CardTextBox>
           <CardPriceBox>
             <PriceSection text={'Price'} />
@@ -74,10 +79,19 @@ const CardBox = styled.div`
 
 // Specific Styled Components
 const CustomAntCard = styled(CardBox)`
+  position: relative;
   min-width: 20rem;
   height: 20.9rem;
   border: solid 1px #d2d3d4;
   background-color: #fff;
+  transition: 0.2s;
+  &:hover {
+    transform: scale(1.04);
+    & .linkBox {
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
   @media (max-width: 1422px) {
     max-width: 25rem;
 
@@ -131,5 +145,28 @@ const CardPriceBox = styled.div`
     align-items: center;
     justify-content: start;
     margin-top: 4px;
+  }
+`
+const CardLinkBox = styled.div`
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  &.linkBox button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    color: #fff;
+    border: 2px solid #fff;
   }
 `

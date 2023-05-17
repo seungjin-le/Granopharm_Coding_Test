@@ -23,4 +23,7 @@ const CustomAntHeaderTitle = styled(Typography)`
   letter-spacing: 0.2px;
   text-align: left;
   color: #1b1d21;
+  @media (max-width: 459px) {
+    display: none;
+  }
 `

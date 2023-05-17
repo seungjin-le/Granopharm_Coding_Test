@@ -57,8 +57,10 @@ const PriceSectionBox = styled.div`
     width: 21px;
     height: 21px;
     margin-top: 4px;
+    cursor: default;
     & span {
       margin: 0;
+      cursor: default;
     }
   }
 `

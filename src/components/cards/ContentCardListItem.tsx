@@ -94,6 +94,9 @@ const CustomAntCard = styled(CardBox)`
     max-width: 28rem;
     min-width: 23rem;
   }
+  @media (max-width: 500px) {
+    height: calc(100vw / 1.2);
+  }
 `
 
 const CardTextBox = styled.div`

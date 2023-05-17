@@ -10,22 +10,25 @@
   - #### 구글 크롬
   - ![browsers2](public/readmeImages/browsers2.png)
 
-- ### 기능 2 : 메타마스크 플러그인으로 로그인.
+- ### 기능 2 : OpenSea API로 이미지 데이터 호출
+  - ![browsers3](public/readmeImages/API.png)
+
+- ### 기능 3 : 메타마스크 플러그인으로 로그인.
   - ![browsers3](public/readmeImages/browsers3.png)
 
-- ### 기능 3 : 지갑 잔액과 지갑 주소 호출.
+- ### 기능 4 : 지갑 잔액과 지갑 주소 호출.
   - ![browsers2](public/readmeImages/login.png)
 
-- ### 기능 4 : 탭 이동.
+- ### 기능 5 : 탭 이동.
   - ![browsers2](public/readmeImages/tab.png)
 
-- ### 기능 5 : 무한 스크롤.
+- ### 기능 6 : 무한 스크롤.
   - ![browsers2](public/readmeImages/InfiniteScroll.png)
 
-- ### 기능 6 : 링크 이동
+- ### 기능 7 : 링크 이동
   - ![browsers2](public/readmeImages/Link.png)
 
-- ### 기능 7: 반응형(Width 1400px ~~ 400px).
+- ### 기능 8: 반응형(Width 1400px ~~ 400px).
   - #### width 1400px
   - ![browsers2](public/readmeImages/width1400px.png)
   - #### width 1000px

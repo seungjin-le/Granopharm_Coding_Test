@@ -2,21 +2,18 @@ import React, {memo} from 'react'
 import styled from 'styled-components'
 import {Layout} from 'antd'
 import ContentCardList from 'container/contents/contentCardList'
-import {useSelector} from 'react-redux'
-import {RootState} from 'store/store'
+import {Assets} from 'lodash'
 
 /**
  * 페이지 컨텐츠 컴포넌트
- * @param {Assets} assets - 에셋 배열
+ *
  * @returns {JSX.Element} - 페이지 컨텐츠 컴포넌트
  */
 
-const PageContent = () => {
-  const items = useSelector((state: RootState) => state.cards)
-
+const PageContent = ({assets}: Assets) => {
   return (
     <CustomAntContent>
-      <ContentCardList assets={items} />
+      <ContentCardList assets={assets} />
     </CustomAntContent>
   )
 }

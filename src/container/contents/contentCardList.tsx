@@ -37,6 +37,9 @@ const CustomAntCardList = styled(Layout)`
   background: #fff;
   margin-top: 50px;
   padding: 0 84px;
+  @media (max-width: 459px) {
+    padding: 0 12px;
+  }
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));

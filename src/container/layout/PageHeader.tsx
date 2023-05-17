@@ -20,7 +20,7 @@ const PageHeader = ({title}: TitleText) => {
     <CustomAntHeader>
       <Link to={'/'}>
         <Row>
-          <HeaderImageBtn src={'logo-3'} alt={'Logo'} size={24} className={'headerLogo'} />
+          <HeaderImageBtn src={'logo-3'} alt={'Logo'} size={36} className={'headerLogo'} />
           <HeaderTitleForm title={title} />
         </Row>
       </Link>
@@ -38,7 +38,10 @@ const CustomAntHeader = styled(Layout)`
   height: 76px;
   padding: 18px 28px 2px 36px;
   background-color: #fff;
-  & > a > div > article {
-    margin-left: 20px;
+  & > a > div {
+    align-items: center;
+    & > article {
+      margin-left: 20px;
+    }
   }
 `

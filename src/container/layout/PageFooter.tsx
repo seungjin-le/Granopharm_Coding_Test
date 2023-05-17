@@ -3,10 +3,20 @@ import styled from 'styled-components'
 import {memo, useEffect, useState} from 'react'
 import {InfiniteScroll} from 'lodash'
 
+/**
+ *
+ * 페이지 하단 푸터 컴포넌트
+ *
+ * @param {InfiniteScroll} infiniteScroll - 무한 스크롤 콜백 함수
+ * @returns {JSX.Element} - 페이지 하단 푸터 컴포넌트
+ *
+ */
+
 const PageFooter = ({infiniteScroll}: InfiniteScroll) => {
   const [isBottom, setIsBottom] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
+  // 스크롤 이벤트 핸들러
   const handleScroll = () => {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
     const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
@@ -16,8 +26,10 @@ const PageFooter = ({infiniteScroll}: InfiniteScroll) => {
   }
 
   useEffect(() => {
+    // 스크롤 이벤트 리스너 등록
     window.addEventListener('scroll', handleScroll)
     return () => {
+      // 컴포넌트 언마운트시 스크롤 이벤트 리스너 제거
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
@@ -25,7 +37,7 @@ const PageFooter = ({infiniteScroll}: InfiniteScroll) => {
   useEffect(() => {
     if (isBottom) {
       setIsLoading(true)
-      // 스크롤이 맨 아래로 도달했을 때 2초후 추가 데이터 요청
+      // 스크롤이 맨 아래로 도달했을 때 2초 후 추가 데이터 요청
       setTimeout(() => {
         infiniteScroll()
         setIsLoading(false)

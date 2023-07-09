@@ -6,6 +6,9 @@ import {Layout, Space} from 'antd'
 import React, {memo} from 'react'
 import {PageLayoutProps, PageTab} from 'lodash'
 import {useNavigate} from 'react-router-dom'
+import {Dispatch} from 'redux'
+import {useDispatch} from 'react-redux'
+import {changeCurrentTab} from '../../store/redux/tabs/CurrentTab'
 //import {useDispatch} from 'react-redux'
 // import {resetCards} from 'store/redux/cards/AssetsSlice'
 // import {resetCurrentPage} from 'store/redux/pages/CurrentPage'
@@ -17,6 +20,7 @@ import {useNavigate} from 'react-router-dom'
  */
 
 const PageLayout = ({children}: PageLayoutProps) => {
+  const dispatch: Dispatch = useDispatch()
   const pageTabTest: PageTab[] = [
     {key: 'all', count: 2899, url: '/tabs/all'},
     {key: 'collections', count: 2829, url: '/tabs/collections'},
@@ -26,6 +30,7 @@ const PageLayout = ({children}: PageLayoutProps) => {
 
   // 텝 이동시 tabKey를 이용한 API요청 함수
   const handleOnChangeTap = (tabKey: string) => {
+    dispatch(changeCurrentTab(tabKey))
     // URL 이동
     navigate({
       pathname: tabKey,

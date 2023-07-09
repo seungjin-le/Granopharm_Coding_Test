@@ -3,7 +3,8 @@ import {Layout, Tabs} from 'antd'
 import styled from 'styled-components'
 import {PageTabProps} from 'lodash'
 import {capitalizeFirstLetter, nFormatter} from 'utils/utility'
-import {Link, useLocation} from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
 /**
  * 페이지 탭 컴포넌트
@@ -13,12 +14,13 @@ import {Link, useLocation} from 'react-router-dom'
  */
 
 const PageTabs = ({handleOnChangeTap, pageTabs}: PageTabProps) => {
-  const location = useLocation()
+  const currentTab = useSelector(({currentTab}: any) => currentTab)
+
   return (
     <CustomAntTabs>
       {/* Ant Design Tabs 컴포넌트 */}
       <Tabs
-        activeKey={location.pathname}
+        activeKey={currentTab}
         onTabClick={tabKey => handleOnChangeTap(tabKey)}
         items={pageTabs?.map(value => {
           return {

@@ -14,7 +14,7 @@ import {RootState} from 'store/store'
 const CollectionsTab = () => {
   const assets = useSelector((state: RootState) => state.assets)
 
-  return <PageContent assets={assets} />
+  return <PageContent />
 }
 
 export default CollectionsTab

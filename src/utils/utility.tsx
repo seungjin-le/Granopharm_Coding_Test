@@ -33,17 +33,17 @@ export const isEmpty = function (value: any) {
  * getData 함수는 주어진 URL을 통해 데이터를 가져오는 비동기 함수 모듈.
  * @param {string} url - 데이터를 요청할 URL
  * @param {object} data - 데이터를 요청할 URL
- * @param {string} query - 데이터를 요청할 URL
+ * @param {object} querys - 데이터를 요청할 URL
  * @param {string} path - 데이터를 요청할 URL
  * @returns {Promise<any>} - 데이터 응답을 담은 Promise 객체
  */
-export const getData = async (url: string) => {
+export const getData = async (url: string, querys: {} = {}): Promise<any> => {
   try {
     const {data}: any = await ApiConfig.request({
       method: HttpMethod.GET,
       url: url,
       data: {},
-      query: {},
+      query: querys,
       path: {},
     })
     if (!data) {

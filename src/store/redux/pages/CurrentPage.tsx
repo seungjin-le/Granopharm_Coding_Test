@@ -5,7 +5,7 @@ interface CurrentPageState {
 }
 
 const initialState: CurrentPageState = {
-  value: 1,
+  value: 0,
 }
 
 export const CurrentPageSlice = createSlice({
@@ -19,7 +19,7 @@ export const CurrentPageSlice = createSlice({
       state.value += 1
     },
     resetCurrentPage: state => {
-      state.value = 1
+      state.value = initialState.value
     },
   },
 })

@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react'
+import {ReactNode} from 'react'
 import {MetaMaskInpageProvider} from '@metamask/providers'
 
 declare global {
@@ -104,12 +104,21 @@ declare module 'lodash' {
   export interface PageTab {
     key: string
     count: number
+    url?: string
   }
 
   // PageTabProps 타입 정의
   export interface PageTabProps {
     handleOnChangeTap: (tabKey: string) => void
     pageTabs?: PageTab[]
+  }
+
+  // InfiniteScrollProps 타입 정의
+  export interface InfiniteScrollProps {
+    data: {
+      pages: any
+      pageParams: any
+    }
   }
 
   // InfiniteScroll 타입 정의

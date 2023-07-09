@@ -1,13 +1,21 @@
+interface MapperTypes {
+  patch: {}
+  post: {}
+  get: {[url: string]: {}}
+  delete: {}
+  put: {}
+}
+
 // process.env.REACT_APP_OPENSEA_API 값을 API 상수에 할당
 const API = process.env.REACT_APP_OPENSEA_API
 
 // EndPoint 객체에 GET_OPENSEA_IMAGES 속성을 추가하고 API 경로를 할당
 export const EndPoint = {
-  GET_OPENSEA_IMAGES: `${API}/bundles?limit=20&offset=0`,
+  GET_OPENSEA_IMAGES: `${API}/bundles`,
 }
 
 // API 요청을 위한 ApiMapper 객체를 정의.
-const ApiMapper = {
+const ApiMapper: MapperTypes = {
   // GET 메소드에 GET_OPENSEA_IMAGES 경로를 매핑.
   get: {
     [EndPoint.GET_OPENSEA_IMAGES]: {},

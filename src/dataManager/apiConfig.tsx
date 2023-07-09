@@ -34,7 +34,6 @@ export default class ApiConfig {
             .map(key => key + '=' + query[key])
             .join('&')
       }
-
       // API 요청에 필요한 헤더를 설정.
       const headers = {
         accept: 'application/json',

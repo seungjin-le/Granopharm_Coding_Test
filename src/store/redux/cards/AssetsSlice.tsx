@@ -14,8 +14,18 @@ export const AssetsSlice = createSlice({
     setCards: (state, action: PayloadAction<CardsState>) => {
       return action.payload
     },
-    addCards: (state, action: PayloadAction<CardsState>) => {
-      return [...state, ...action.payload]
+    addCards: (state, action: PayloadAction<any>) => {
+      const assets = action.payload
+        ?.map(({bundles}: any) => {
+          return bundles.map((asset: any) => ({
+            assetName: asset.asset_contract?.name,
+            assetMainImage: asset.asset_contract?.image_url,
+            assetLink: asset?.permalink,
+            assetImages: asset.assets?.map((assetImages: any) => assetImages.image_thumbnail_url),
+          }))
+        })
+        .flat()
+      return assets ? assets : state
     },
   },
   extraReducers: builder => {
@@ -28,3 +38,5 @@ export const AssetsSlice = createSlice({
 export const {setCards, addCards} = AssetsSlice.actions
 
 export default AssetsSlice.reducer
+
+//

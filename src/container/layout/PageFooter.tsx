@@ -1,7 +1,10 @@
 import {Layout, Space, Spin} from 'antd'
 import styled from 'styled-components'
-import {memo, useEffect, useState} from 'react'
-import {InfiniteScroll} from 'lodash'
+import {memo, useEffect} from 'react'
+import {useGetInfiniteCards} from '../../hooks/queries/CardQuery'
+import {useDispatch} from 'react-redux'
+import {Dispatch} from 'redux'
+import {addCards} from '../../store/redux/cards/AssetsSlice'
 
 /**
  *
@@ -12,17 +15,19 @@ import {InfiniteScroll} from 'lodash'
  *
  */
 
-const PageFooter = ({infiniteScroll}: InfiniteScroll) => {
-  const [isBottom, setIsBottom] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+const PageFooter = () => {
+  const {fetchNextPage, isFetching, isFetchingNextPage} = useGetInfiniteCards()
+  const dispatch: Dispatch = useDispatch()
 
   // 스크롤 이벤트 핸들러
-  const handleScroll = () => {
+  const handleScroll = async () => {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
     const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
     const clientHeight = document.documentElement.clientHeight || window.innerHeight
-
-    setIsBottom(scrollTop + clientHeight >= scrollHeight)
+    if (clientHeight + scrollTop >= scrollHeight) {
+      const {data} = await fetchNextPage()
+      if (isFetching) dispatch(addCards(data?.pages.flat()))
+    }
   }
 
   useEffect(() => {
@@ -34,20 +39,9 @@ const PageFooter = ({infiniteScroll}: InfiniteScroll) => {
     }
   }, [])
 
-  useEffect(() => {
-    if (isBottom) {
-      setIsLoading(true)
-      // 스크롤이 맨 아래로 도달했을 때 2초 후 추가 데이터 요청
-      setTimeout(() => {
-        infiniteScroll()
-        setIsLoading(false)
-      }, 2000)
-    }
-  }, [isBottom])
-
   return (
     <CustomAntFooter>
-      {isLoading && (
+      {isFetchingNextPage && (
         <Space size='middle'>
           <Spin size='large' />
         </Space>

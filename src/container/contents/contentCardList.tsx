@@ -1,30 +1,37 @@
 import styled from 'styled-components'
 import {Avatar, Card, Layout} from 'antd'
 import ContentCardListItem from 'components/cards/ContentCardListItem'
-import {Asset, Assets} from 'lodash'
+import {Asset} from 'lodash'
 import {Meta} from 'antd/lib/list/Item'
+import {useGetInfiniteCards} from '../../hooks/queries/CardQuery'
+import {useSelector} from 'react-redux'
 
 /**
  * 콘텐츠 카드 리스트 컴포넌트
  * @param {Asset[]} assets - 에셋 배열
  * @returns {JSX.Element} - 콘텐츠 카드 리스트 컴포넌트
  */
+//{assets}: Assets
+const ContentCardList = () => {
+  const {isLoading, isError} = useGetInfiniteCards()
+  const assets: any = useSelector((state: any) => state.assets)
 
-const ContentCardList = ({assets}: Assets) => {
   return (
     <CustomAntCardList>
-      {assets.length ? (
-        assets?.map((asset: Asset, index: number) => {
-          return <ContentCardListItem asset={asset} key={index} />
-        })
-      ) : (
+      {isError ? (
+        <div>Error</div>
+      ) : isLoading ? (
         <Card style={{width: 300, marginTop: 16}} loading={true}>
           <Meta
             avatar={<Avatar src='https://xsgames.co/randomusers/avatar.php?g=pixel&key=1' />}
-            title='Card title'
+            title='CardQuert title'
             description='This is the description'
           />
         </Card>
+      ) : (
+        assets?.map((asset: Asset, index: number) => {
+          return <ContentCardListItem asset={asset} key={index} />
+        })
       )}
     </CustomAntCardList>
   )

@@ -46,7 +46,7 @@ const CustomAntTabs = styled(Layout)`
   background-color: #fff;
   color: black;
   & div {
-    font-family: AirbnbCerealBd;
+    font-family: AirbnbCerealBd, serif;
   }
   & .ant-tabs-nav {
     border-bottom: 2px solid #e4e4e4;

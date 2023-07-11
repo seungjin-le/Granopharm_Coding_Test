@@ -14,7 +14,7 @@ import {useSelector} from 'react-redux'
 //{assets}: Assets
 const ContentCardList = () => {
   const {isLoading, isError} = useGetInfiniteCards()
-  const assets: any = useSelector((state: any) => state.assets)
+  const {assets}: any = useSelector((state: any) => state)
 
   return (
     <CustomAntCardList>

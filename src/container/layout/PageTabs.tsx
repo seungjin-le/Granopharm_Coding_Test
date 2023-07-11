@@ -95,7 +95,7 @@ const TabBox = styled.div`
 const TabCount = styled.span`
   display: inline-block;
   margin-left: 4px;
-  font-family: AirbnbCerealBd;
+  font-family: AirbnbCerealBd, serif;
   font-size: 15px;
   font-weight: normal;
   font-stretch: normal;

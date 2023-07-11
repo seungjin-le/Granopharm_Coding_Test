@@ -9,9 +9,6 @@ import {useNavigate} from 'react-router-dom'
 import {Dispatch} from 'redux'
 import {useDispatch} from 'react-redux'
 import {changeCurrentTab} from '../../store/redux/tabs/CurrentTab'
-//import {useDispatch} from 'react-redux'
-// import {resetCards} from 'store/redux/cards/AssetsSlice'
-// import {resetCurrentPage} from 'store/redux/pages/CurrentPage'
 
 /**
  * 페이지 레이아웃 컴포넌트
@@ -37,7 +34,7 @@ const PageLayout = ({children}: PageLayoutProps) => {
     })
 
     // 카드 리스트 초기화
-    // dispatch(resetCards())
+    //dispatch(resetCards())
 
     // 현재 페이지 초기화
     // dispatch(resetCurrentPage())

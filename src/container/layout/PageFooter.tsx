@@ -2,7 +2,7 @@ import {Layout, Space, Spin} from 'antd'
 import styled from 'styled-components'
 import {memo, useEffect} from 'react'
 import {useGetInfiniteCards} from '../../hooks/queries/CardQuery'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {Dispatch} from 'redux'
 import {addCards} from '../../store/redux/cards/AssetsSlice'
 
@@ -16,9 +16,10 @@ import {addCards} from '../../store/redux/cards/AssetsSlice'
  */
 
 const PageFooter = () => {
+  const currentTab = useSelector((state: any) => state.currentTab.value)
   const {fetchNextPage, isFetching, isFetchingNextPage} = useGetInfiniteCards()
   const dispatch: Dispatch = useDispatch()
-
+  console.log(currentTab)
   // 스크롤 이벤트 핸들러
   const handleScroll = async () => {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop

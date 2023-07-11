@@ -1,6 +1,9 @@
 import PageContent from 'container/layout/PageContent'
-import {useSelector} from 'react-redux'
-import {RootState} from 'store/store'
+import {useDispatch} from 'react-redux'
+import {useGetInfiniteCards} from '../../hooks/queries/CardQuery'
+import {Dispatch} from 'redux'
+import {useEffect} from 'react'
+import {addCards} from '../../store/redux/cards/AssetsSlice'
 
 /**
  *
@@ -13,7 +16,14 @@ import {RootState} from 'store/store'
  */
 
 const SinglesTab = () => {
-  const assets = useSelector((state: RootState) => state.assets)
+  const {data, status}: any | undefined = useGetInfiniteCards()
+  const dispatch: Dispatch = useDispatch()
+  useEffect((): void => {
+    if (status === 'success' && data) {
+      const flattenedPages: any = data.pages.flat()
+      dispatch(addCards(flattenedPages))
+    }
+  }, [data, status])
 
   return <PageContent />
 }
